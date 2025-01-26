@@ -1,5 +1,8 @@
 [build]
-command = "pip install -r requirements.txt"
+command = """
+python -m pip install --upgrade pip
+pip install -r requirements.txt
+"""
 publish = "templates"
 functions = "netlify/functions"
 
@@ -12,4 +15,5 @@ to = "/.netlify/functions/app"
 status = 200
 
 [functions]
-directory = "netlify/functions" 
+directory = "netlify/functions"
+node_bundler = "esbuild" 
