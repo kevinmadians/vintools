@@ -1,13 +1,10 @@
 [build]
-command = """
-python -m pip install --upgrade pip
-pip install -r requirements.txt
-"""
+command = "pip install -r requirements.txt"
 publish = "templates"
-functions = "netlify/functions"
 
-[build.environment]
-PYTHON_VERSION = "3.8"
+[dev]
+framework = "#custom"
+command = "python app.py"
 
 [[redirects]]
 from = "/*"
@@ -16,4 +13,7 @@ status = 200
 
 [functions]
 directory = "netlify/functions"
-node_bundler = "esbuild" 
+node_bundler = "esbuild"
+
+[build.environment]
+PYTHON_VERSION = "3.9" 
