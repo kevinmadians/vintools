@@ -1,0 +1,2002 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article Rewriter - Shining Tools | Best Online Tools</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Transform your articles with AI-powered rewriting. Shining Tools offers the best online article rewriter with advanced AI technology for unique, engaging content.">
+    <meta name="keywords" content="article rewriter, AI content writer, content rewriting tool, article spinner, text rewriter, content generator">
+    <meta name="author" content="Shining Tools">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Article Rewriter - Shining Tools | Best Online Tools">
+    <meta property="og:description" content="Transform your articles with AI-powered rewriting. Create unique, engaging content with our advanced article rewriter tool.">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Shining Tools">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Article Rewriter - Shining Tools | Best Online Tools">
+    <meta name="twitter:description" content="Transform your articles with AI-powered rewriting. Create unique, engaging content with our advanced article rewriter tool.">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://shiningtools.com/article-rewriter">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/marked/marked.min.js" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lexend+Deca:wght@400;500;600;700&display=swap');
+        
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --primary-darker: #4338ca;
+            --primary-light: #818cf8;
+            --bg-gradient: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+            --bg-gradient-dark: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --card-bg-dark: rgba(31, 41, 55, 0.95);
+            --text: #1f2937;
+            --text-dark: #f3f4f6;
+            --text-muted: #6b7280;
+            --text-muted-dark: #9ca3af;
+            --border-light: rgba(229, 231, 235, 0.2);
+            --border-dark: rgba(255, 255, 255, 0.05);
+            --shadow-light: rgba(0, 0, 0, 0.1);
+            --shadow-dark: rgba(0, 0, 0, 0.3);
+            --primary-gradient: linear-gradient(135deg, #6366f1, #a855f7);
+            --bg-light: #f8fafc;
+            --bg-dark: #0f172a;
+            --text-light: #1e293b;
+        }
+
+        .dark {
+            color-scheme: dark;
+            --bg: var(--bg-dark);
+            --text: var(--text-dark);
+        }
+
+        .dark body {
+            background: var(--bg-gradient-dark);
+            color: var(--text-dark);
+        }
+
+        body {
+            font-family: 'Lexend Deca', 'Inter', sans-serif;
+            background: var(--bg-gradient);
+            color: var(--text);
+            transition: background-color 0.3s, color 0.3s;
+            min-height: 100vh;
+        }
+        
+        .loading {
+            display: none;
+        }
+        
+        .loading.active {
+            display: flex;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: opacity 0.3s;
+        }
+        
+        .gradient-text:hover {
+            opacity: 0.9;
+        }
+        
+        .glass-morphism {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .dark .glass-morphism {
+            background: rgba(17, 24, 39, 0.8);
+            border-color: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .glass-morphism:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .dark .glass-morphism:hover {
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 50;
+            overflow-y: auto;
+        }
+        
+        .modal.active {
+            display: block;
+        }
+
+        /* Custom Scrollbar */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: var(--primary-light);
+            border-radius: 4px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #8b5cf6;
+        }
+        
+        .preview-content {
+            max-height: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .preview-content::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: linear-gradient(transparent, white);
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 1rem;
+            background: var(--primary-darker);
+            color: white;
+            border-radius: 0.5rem;
+            transform: translateY(150%);
+            transition: transform 0.3s ease-in-out;
+            z-index: 100;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+        }
+
+        /* Button hover effects */
+        .hover-effect {
+            transition: all 0.3s ease;
+        }
+        
+        .hover-effect:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
+        }
+
+        .history-item {
+            background: rgba(255, 255, 255, 0.9) !important;
+            border: 1px solid rgba(229, 231, 235, 0.2);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+        }
+
+        .dark .history-item {
+            background: rgba(31, 41, 55, 0.9) !important;
+            border-color: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .history-item:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        .dark .history-item:hover {
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Update the history section */
+        .history-section {
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        .history-item {
+            transition: all 0.3s ease;
+            border: 1px solid #e5e7eb;
+            
+            position: relative;
+        }
+
+        .history-item .delete-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .history-item:hover .delete-btn {
+            opacity: 1;
+        }
+
+        .task-button {
+            display: none !important;
+        }
+
+        /* Dark mode toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 50;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            background: var(--card-bg);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s;
+            cursor: pointer;
+        }
+
+        .dark .theme-toggle {
+            background: var(--card-bg-dark);
+        }
+
+        /* Modern button styles */
+        .btn {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 60%);
+            transform: translate(-50%, -50%) scale(0);
+            transition: transform 0.5s;
+            pointer-events: none;
+        }
+
+        .btn:hover::after {
+            transform: translate(-50%, -50%) scale(2);
+        }
+
+        .btn:hover {
+            box-shadow: 0 6px 16px rgba(99, 102, 241, 0.3);
+        }
+
+        /* History item animations */
+        .history-item {
+            transition: all 0.3s ease;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Custom scrollbar for dark mode */
+        .dark .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(55, 65, 81, 0.5);
+        }
+
+        .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(75, 85, 99, 0.8);
+        }
+
+        .dark .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: rgba(107, 114, 128, 0.9);
+        }
+
+        /* Input styles */
+        input[type="url"], input[type="text"], textarea {
+            border: 1px solid #e5e7eb !important;
+            transition: all 0.3s ease;
+        }
+
+        .dark input[type="url"], 
+        .dark input[type="text"], 
+        .dark textarea {
+            border-color: rgba(75, 85, 99, 0.4) !important;
+        }
+
+        input[type="url"]:hover, 
+        input[type="text"]:hover, 
+        textarea:hover {
+            border-color: #a5b4fc !important;
+        }
+
+        .dark input[type="url"]:hover, 
+        .dark input[type="text"]:hover, 
+        .dark textarea:hover {
+            border-color: #818cf8 !important;
+        }
+
+        input[type="url"]:focus, 
+        input[type="text"]:focus, 
+        textarea:focus {
+            border-color: #6366f1 !important;
+            box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.1);
+        }
+
+        /* Toast animations */
+        .toast {
+            animation: slideUp 0.3s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Markdown content dark mode */
+        .dark .markdown-content {
+            color: #e5e7eb;
+        }
+
+        .dark .markdown-content h1 {
+            color: var(--primary-light);
+            border-bottom-color: var(--border-dark);
+        }
+
+        .dark .markdown-content h2 {
+            color: var(--primary-dark);
+        }
+
+        .dark .markdown-content p {
+            color: #e5e7eb;
+        }
+
+        .dark .markdown-content blockquote {
+            background: rgba(139, 92, 246, 0.1);
+            border-left-color: var(--primary);
+            color: #d1d5db;
+        }
+
+        .dark .markdown-content strong {
+            color: var(--primary-light);
+        }
+
+        .dark .markdown-content a {
+            color: var(--primary-light);
+        }
+
+        .dark .markdown-content a:hover {
+            color: var(--primary-dark);
+        }
+
+        /* Modal dark mode */
+        .dark .modal { background: rgba(0, 0, 0, 0.8); }
+
+        .light {
+            --bg: var(--bg-light);
+            --text: var(--text-light);
+        }
+
+        /* Modal Styles */
+        .modal-open {
+            overflow: hidden;
+        }
+
+        #modal .bg-white {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .comparison-view {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1px;
+            height: calc(90vh - 85px);
+            background: var(--card-bg);
+        }
+
+        .comparison-panel {
+            display: flex;
+            flex-direction: column;
+            background: var(--card-bg);
+            overflow: hidden;
+        }
+
+        .comparison-header {
+            padding: 1rem 1.5rem;
+            background: var(--card-bg);
+            border-bottom: 1px solid rgba(229, 231, 235, 0.1);
+            flex-shrink: 0;
+        }
+
+        .comparison-content {
+            flex: 1;
+            padding: 1.5rem;
+            overflow-y: auto;
+            background: var(--card-bg);
+        }
+
+        /* Markdown Styles */
+        .markdown-body {
+            color: var(--text);
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        /* Original article styles */
+        .comparison-panel:first-child .markdown-body h1 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1.25rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(229, 231, 235, 0.2);
+            color: var(--primary);
+        }
+
+        /* Rewritten article styles - same size as original */
+        .comparison-panel:last-child .markdown-body h1 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1.25rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(229, 231, 235, 0.2);
+            color: var(--primary);
+        }
+
+        .markdown-body h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+        }
+
+        .markdown-body h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .markdown-body p {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .markdown-body blockquote {
+            border-left: 4px solid var(--primary);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background: rgba(99, 102, 241, 0.08);
+            border-radius: 0.5rem;
+            font-style: italic;
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .dark .markdown-body blockquote {
+            background: rgba(99, 102, 241, 0.1);
+            border-left-color: var(--primary-light);
+            color: var(--text-dark);
+        }
+
+        .markdown-body blockquote p {
+            margin: 0;
+            color: inherit;
+        }
+
+        .markdown-body blockquote p:last-child {
+            margin-bottom: 0;
+        }
+
+        .markdown-body blockquote + blockquote {
+            margin-top: -0.5rem;
+        }
+
+        .markdown-body ul, .markdown-body ol {
+            padding-left: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .markdown-body li {
+            margin: 0.5rem 0;
+        }
+
+        .markdown-body strong {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .markdown-body em {
+            font-style: italic;
+            color: var(--primary-dark);
+        }
+
+        .markdown-body a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .markdown-body a:hover {
+            color: var(--primary-dark);
+            text-decoration: underline;
+        }
+
+        /* Dark mode markdown styles */
+        .dark .markdown-body {
+            color: var(--text-dark);
+        }
+
+        .dark .markdown-body h1 {
+            color: var(--primary-light);
+            border-bottom-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .dark .markdown-body h2 {
+            color: var(--primary-light);
+        }
+
+        .dark .markdown-body blockquote {
+            background: rgba(99, 102, 241, 0.15);
+            border-left-color: var(--primary-light);
+        }
+
+        .dark .markdown-body strong {
+            color: var(--primary-light);
+        }
+
+        .dark .markdown-body em {
+            color: var(--primary-light);
+        }
+
+        .dark .markdown-body a {
+            color: var(--primary-light);
+        }
+
+        .dark .markdown-body a:hover {
+            color: var(--primary);
+        }
+
+        /* Navigation styles */
+        nav {
+            transition: all 0.3s ease;
+            background: transparent;
+            padding: 0.75rem 0;
+        }
+
+        .nav-container {
+            background: var(--card-bg);
+            border-radius: 0.75rem;
+            padding: 0.75rem 1.5rem;
+            border: 1px solid rgba(229, 231, 235, 0.5);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-top: 1rem;
+            position: relative;
+        }
+
+        .dark .nav-container {
+            background: var(--card-bg-dark);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-menu-button {
+            display: none;
+            padding: 0.5rem;
+            border-radius: 0.375rem;
+            color: var(--text);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .mobile-menu-button:hover {
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .mobile-menu {
+            display: none;
+            position: absolute;
+            top: calc(100% + 0.5rem);
+            left: 0;
+            right: 0;
+            background: var(--card-bg);
+            padding: 0.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 12px var(--shadow-light);
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 40;
+            margin: 0 1rem;
+        }
+
+        .dark .mobile-menu {
+            background: var(--card-bg-dark);
+            box-shadow: 0 4px 12px var(--shadow-dark);
+        }
+
+        .mobile-menu.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .mobile-menu .nav-item {
+            display: block;
+            padding: 0.75rem 1rem;
+            margin: 0.25rem 0;
+            border-radius: 0.5rem;
+            color: var(--text);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .mobile-menu .nav-item:hover {
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .mobile-menu .nav-item.active {
+            background: var(--primary-gradient);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-button {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .nav-container {
+                margin-top: 0.5rem;
+                padding: 0.5rem 1rem;
+            }
+        }
+
+        /* Footer styles */
+        .footer {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border-top: 1px solid rgba(229, 231, 235, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .dark .footer {
+            background: rgba(17, 24, 39, 0.8);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-link {
+            transition: all 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: var(--primary);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .glass-morphism {
+                padding: 1rem;
+                background: var(--card-bg) !important;
+                backdrop-filter: none !important;
+            }
+
+            .dark .glass-morphism {
+                background: var(--card-bg-dark) !important;
+            }
+
+            .flex.gap-4 {
+                flex-direction: column;
+            }
+
+            .flex.gap-4 button {
+                width: 100%;
+            }
+
+            .comparison-view {
+                grid-template-columns: 1fr;
+                height: auto;
+            }
+
+            .comparison-panel {
+                height: 50vh;
+            }
+
+            .modal-content {
+                margin: 0;
+                height: 100vh;
+                max-width: 100%;
+                border-radius: 0;
+            }
+
+            .toast {
+                left: 1rem;
+                right: 1rem;
+                bottom: 1rem;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 640px) {
+            nav .flex.items-center.space-x-8 {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+
+            nav .flex.items-center.space-x-6 {
+                margin-top: 0.5rem;
+            }
+
+            .nav-content {
+                height: auto;
+                padding: 1rem 0;
+            }
+
+            .history-item {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .history-item .flex-1 {
+                width: 100%;
+            }
+
+            .history-item .flex.items-center.gap-2 {
+                width: 100%;
+                justify-content: flex-start;
+            }
+        }
+
+        /* Adjust navigation for mobile */
+        @media (max-width: 480px) {
+            nav {
+                padding: 0.5rem 0;
+            }
+
+            .gradient-text {
+                font-size: 1.5rem;
+            }
+
+            nav .flex.items-center.space-x-6 {
+                gap: 1rem;
+            }
+
+            h2.text-2xl {
+                font-size: 1.25rem;
+            }
+
+            .btn {
+                padding: 0.75rem 1rem;
+                font-size: 0.875rem;
+            }
+        }
+
+        /* Mobile optimizations to reduce blur and improve performance */
+        @media (max-width: 768px) {
+            .glass-morphism {
+                background: rgba(255, 255, 255, 0.95) !important;
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+            }
+
+            .dark .glass-morphism {
+                background: rgba(17, 24, 39, 0.95) !important;
+            }
+
+            nav.scrolled {
+                background: rgba(255, 255, 255, 0.98) !important;
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+            }
+
+            .dark nav.scrolled {
+                background: rgba(17, 24, 39, 0.98) !important;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+            }
+
+            .footer {
+                background: rgba(255, 255, 255, 0.98) !important;
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+            }
+
+            .dark .footer {
+                background: rgba(17, 24, 39, 0.98) !important;
+            }
+
+            /* Modal header optimization */
+            .modal .p-6 {
+                background: rgba(255, 255, 255, 0.98) !important;
+            }
+
+            .dark .modal .p-6 {
+                background: rgba(17, 24, 39, 0.98) !important;
+            }
+
+            /* Copy button container optimization */
+            .modal .flex.items-center.gap-4 {
+                background: none !important;
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+            }
+
+            /* Comparison panels optimization */
+            .comparison-panel {
+                background: rgba(255, 255, 255, 0.98) !important;
+            }
+
+            .dark .comparison-panel {
+                background: rgba(17, 24, 39, 0.98) !important;
+            }
+        }
+
+        /* Article preview section styles */
+        .article-preview-section {
+            background: var(--card-bg);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 4px 12px var(--shadow-light);
+            transition: all 0.3s ease;
+        }
+
+        .dark .article-preview-section {
+            background: var(--card-bg-dark);
+            box-shadow: 0 4px 12px var(--shadow-dark);
+        }
+
+        .article-preview-content {
+            flex: 1;
+            overflow-y: auto;
+            position: relative;
+            margin-bottom: 1rem;
+            padding-right: 0.5rem;
+        }
+
+        .article-preview-content::after {
+            display: none;
+        }
+
+        .preview-section {
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transform: translateX(20px);
+            transition: all 0.3s ease-in-out;
+            display: none;
+        }
+
+        .preview-section.active {
+            opacity: 1;
+            transform: translateX(0);
+            display: block;
+        }
+
+        /* Make textarea and preview content match in size */
+        .input-section .glass-morphism,
+        .article-preview-section {
+            height: calc(100vh - 400px);
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input-section textarea {
+            flex: 1;
+            min-height: 0;
+            height: auto;
+        }
+
+        /* Adjust the content grid to maintain equal heights */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            width: 100%;
+            transition: all 0.3s ease-in-out;
+            margin-bottom: 1rem;
+        }
+
+        .content-grid.has-preview {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        /* Custom scrollbar for preview content */
+        .article-preview-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .article-preview-content::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        .article-preview-content::-webkit-scrollbar-thumb {
+            background: var(--primary-light);
+            border-radius: 4px;
+        }
+
+        .article-preview-content::-webkit-scrollbar-thumb:hover {
+            background: #8b5cf6;
+        }
+
+        .dark .article-preview-content::-webkit-scrollbar-track {
+            background: rgba(55, 65, 81, 0.5);
+        }
+
+        .dark .article-preview-content::-webkit-scrollbar-thumb {
+            background: rgba(75, 85, 99, 0.8);
+        }
+
+        .dark .article-preview-content::-webkit-scrollbar-thumb:hover {
+            background: rgba(107, 114, 128, 0.9);
+        }
+
+        /* Adjust button container in preview */
+        .preview-button-container {
+            margin-top: auto;
+            padding-top: 1rem;
+            text-align: center;
+        }
+
+        /* Main content layout */
+        .main-content-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            padding: 1rem;
+        }
+
+        .url-section {
+            grid-column: 1 / -1;
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+
+        .progress-section {
+            grid-column: 1 / -1;
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+
+        .history-container {
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .history-section {
+            max-height: 300px; /* Show approximately 3 items */
+            overflow-y: auto;
+            display: grid;
+            gap: 0.75rem;
+            padding: 0.75rem;
+        }
+
+        /* Disabled button styles */
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        /* Adjust container top margin */
+        .container.mx-auto {
+            margin-top: 5rem;
+        }
+
+        /* Adjust header bottom margin */
+        .text-center.mb-8 {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Mobile responsive layout */
+        @media (max-width: 768px) {
+            .content-grid.has-preview {
+                grid-template-columns: 1fr;
+            }
+
+            .preview-section {
+                margin-top: 1rem;
+            }
+
+            .input-section .glass-morphism,
+            .article-preview-section {
+                min-height: 400px;
+                height: auto;
+            }
+
+            /* Adjust title sizes for mobile */
+            .input-section h2.text-xl,
+            .article-preview-title.text-xl {
+                font-size: 1.125rem; /* text-lg */
+                margin-bottom: 0.75rem;
+            }
+
+            .article-preview-meta {
+                font-size: 0.75rem; /* text-xs */
+                margin-bottom: 0.75rem;
+            }
+
+            /* Comparison modal title adjustments for mobile */
+            .modal .comparison-header h4 {
+                font-size: 1rem;
+            }
+
+            .comparison-panel:first-child .markdown-body h1,
+            .comparison-panel:last-child .markdown-body h1 {
+                font-size: 1.125rem;
+                margin-bottom: 1rem;
+            }
+
+            .article-preview-content.mobile-collapsed {
+                max-height: 200px;
+                overflow: hidden;
+                position: relative;
+            }
+
+            .article-preview-content.mobile-collapsed::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                height: 60px;
+                background: linear-gradient(transparent, var(--card-bg));
+            }
+
+            .dark .article-preview-content.mobile-collapsed::after {
+                background: linear-gradient(transparent, var(--card-bg-dark));
+            }
+
+            .mobile-show-more {
+                display: none;
+                text-align: center;
+                margin-top: 1rem;
+                margin-bottom: 1rem;
+            }
+
+            @media (max-width: 768px) {
+                .mobile-show-more {
+                    display: block;
+                }
+            }
+        }
+
+        /* Modal header styles */
+        .modal-header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: var(--card-bg);
+            border-bottom: 1px solid var(--border-light);
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .dark .modal-header {
+            background: var(--card-bg-dark);
+            border-color: var(--border-dark);
+        }
+
+        .modal-header h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .dark .modal-header h3 {
+            color: var(--text-dark);
+        }
+
+        .modal-header .button-group {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .modal-header .copy-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            background: var(--primary-gradient);
+            color: white;
+        }
+
+        .modal-header .copy-btn:hover {
+            opacity: 0.9;
+        }
+
+        .modal-header .close-btn {
+            padding: 0.5rem;
+            border-radius: 0.375rem;
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+        }
+
+        .modal-header .close-btn:hover {
+            color: var(--text);
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .dark .modal-header .close-btn:hover {
+            color: var(--text-dark);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Mobile modal header adjustments */
+        @media (max-width: 768px) {
+            .modal {
+                padding-top: max(env(safe-area-inset-top, 0), 1rem);
+            }
+
+            .modal-header {
+                padding: 1rem;
+                margin-top: 1rem;
+                border-radius: 0.5rem 0.5rem 0 0;
+            }
+
+            .modal-header h3 {
+                font-size: 1rem;
+            }
+
+            .modal-header .button-group {
+                gap: 0.5rem;
+            }
+
+            .modal-header .copy-btn {
+                padding: 0.5rem;
+            }
+
+            .modal-header .copy-btn span {
+                display: none;
+            }
+
+            .modal-header .copy-btn svg,
+            .modal-header .close-btn svg {
+                width: 1.25rem;
+                height: 1.25rem;
+            }
+        }
+
+        /* Modal content adjustments */
+        .modal .comparison-view {
+            height: calc(90vh - 5rem);
+        }
+
+        .modal .bg-white {
+            margin-top: 1rem;
+        }
+
+        @media (min-width: 769px) {
+            .modal .bg-white {
+                margin-top: 2rem;
+            }
+
+            .modal-header {
+                border-radius: 0.5rem 0.5rem 0 0;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen py-8">
+    <!-- Add auth check at the start of body -->
+    <script>
+        // Check if user is logged in
+        if (!localStorage.getItem('currentUser')) {
+            window.location.href = '/login';
+        }
+    </script>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 pt-4">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="nav-container">
+                <div class="flex justify-between items-center">
+                    <a href="/" class="text-2xl font-bold gradient-text hover:opacity-80 transition-opacity">Shining Tools</a>
+                    
+                    <!-- Mobile Menu Button -->
+                    <button class="mobile-menu-button" onclick="toggleMobileMenu(event)">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+
+                    <!-- Desktop Navigation Links -->
+                    <div class="nav-links hidden md:flex items-center space-x-6">
+                        <a href="/" class="text-indigo-600 dark:text-indigo-400 font-medium">
+                            Article Rewriter
+                        </a>
+                        <a href="/instagram" class="text-gray-800 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400">
+                            Instagram Generator
+                        </a>
+                        <div class="relative" id="userDropdown">
+                            <button onclick="toggleDropdown()" class="flex items-center space-x-1 text-gray-800 dark:text-gray-200 hover:text-indigo-600">
+                                <span id="usernameDisplay"></span>
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </button>
+                            <div id="dropdownMenu" class="hidden absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg py-2">
+                                <button onclick="logout()" class="w-full text-left px-4 py-2 text-red-600 dark:text-red-400 hover:bg-gray-100 dark:hover:bg-gray-700">
+                                    Logout
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mobile Menu -->
+                    <div class="mobile-menu">
+                        <a href="/" class="nav-item">
+                            Article Rewriter
+                        </a>
+                        <a href="/instagram" class="nav-item">
+                            Instagram Generator
+                        </a>
+                        <div class="nav-item">
+                            <div class="flex justify-between items-center" onclick="toggleMobileSubmenu()">
+                                <span id="usernameMobile"></span>
+                                <svg class="w-4 h-4 transform transition-transform" id="mobileSubmenuIcon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </div>
+                            <div id="mobileSubmenu" class="hidden pl-4 mt-2">
+                                <button onclick="logout()" class="nav-item text-red-600 dark:text-red-400 hover:text-red-800 dark:hover:text-red-600 w-full text-left">
+                                    Logout
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto px-4 max-w-6xl">
+        <div class="text-center mb-6">
+            <h1 class="text-4xl font-bold mb-3 gradient-text">Article Rewriter</h1>
+            <p class="text-lg text-gray-600 dark:text-gray-300">Transform your articles with AI-powered rewriting</p>
+        </div>
+
+        <div class="main-content-wrapper">
+            <!-- URL Input Section (Full Width) -->
+            <div class="url-section">
+                <div class="glass-morphism rounded-xl shadow-lg p-5">
+                    <h2 class="text-xl text-center text-semibold mb-3 text-gray-800">Article URL</h2>
+                    <div class="flex gap-4">
+                        <input type="text" id="articleUrl" 
+                               class="flex-1 p-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400 bg-white dark:bg-gray-800 dark:text-gray-200"
+                               placeholder="Paste your article URL here...">
+                        <button onclick="scrapeArticle()" 
+                                id="scrapeButton"
+                                disabled
+                                class="btn bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-6 py-3 rounded-lg hover:opacity-90 transition-opacity flex items-center gap-2">
+                            <span>Scrape</span>
+                            <svg id="scrapeSpinner" class="animate-spin h-5 w-5 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress Bar (Full Width) -->
+            <div id="progressContainer" class="progress-section hidden">
+                <div class="glass-morphism rounded-xl shadow-lg p-5">
+                    <div class="flex justify-between mb-1">
+                        <span class="text-sm font-medium text-indigo-700 dark:text-indigo-300" id="progressText">0%</span>
+                        <span class="text-sm font-medium text-indigo-700 dark:text-indigo-300" id="progressStatus">Initializing...</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                        <div id="progressBar" class="bg-gradient-to-r from-indigo-500 to-purple-500 h-2.5 rounded-full transition-all duration-300" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content Grid (Original and Generated Articles) -->
+            <div class="content-grid">
+                <div class="input-section">
+                    <!-- Main Content -->
+                    <div class="glass-morphism rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow">
+                        <h2 class="text-xl text-center font-semibold mb-4 text-gray-800 dark:text-gray-200">Original Article</h2>
+                        <textarea id="originalText" rows="15" 
+                                  class="w-full p-4 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400 bg-white dark:bg-gray-800 dark:text-gray-200 resize-none mb-6 custom-scrollbar input-modern"
+                                  placeholder="Paste your K-pop article here or use URL scraper above..."></textarea>
+
+                        <!-- Action Buttons -->
+                        <div class="flex justify-center gap-4">
+                            <button onclick="rewriteArticle()" 
+                                    id="rewriteButton"
+                                    disabled
+                                    class="btn bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-12 py-4 rounded-lg text-lg font-semibold flex items-center gap-3 shadow-lg hover:opacity-90">
+                                <span>Rewrite</span>
+                                <svg id="rewriteSpinner" class="animate-spin h-5 w-5 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
+                            </button>
+                            <button onclick="openModal()" id="viewArticleBtn" 
+                                    class="btn bg-indigo-100 dark:bg-indigo-900 text-indigo-600 dark:text-indigo-300 px-8 py-4 rounded-lg text-lg font-semibold flex items-center gap-3 shadow-lg hover:opacity-90 hidden">
+                                <span>View</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7 1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="preview-section custom-scrollbar" id="previewSection">
+                    <!-- Generated articles will appear here -->
+                </div>
+            </div>
+            
+            <!-- Article History (Full Width) -->
+            <div class="history-container">
+                <div class="glass-morphism rounded-xl shadow-lg p-5 hover:shadow-xl transition-shadow">
+                    <h2 class="text-xl text-center font-semibold mb-2 text-gray-800 dark:text-gray-200">Article History</h2>
+                    <div id="historyList" class="history-section custom-scrollbar">
+                        <!-- History items will be inserted here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Full Screen Modal -->
+    <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 dark:bg-opacity-70 backdrop-blur-sm hidden z-50 transition-opacity duration-300">
+        <div class="fixed inset-0 flex items-start justify-center p-4">
+            <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl w-full max-w-6xl max-h-[90vh] overflow-hidden transform transition-all duration-300 scale-95 opacity-0">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h3 class="text-gray-900 dark:text-gray-100 truncate">Article Comparison</h3>
+                    <div class="button-group">
+                        <button onclick="copyArticle()" class="copy-btn">
+                            <span class="hidden md:inline">Copy Article</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z" />
+                                <path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z" />
+                            </svg>
+                        </button>
+                        <button onclick="closeModal()" class="close-btn">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Modal Content -->
+                <div class="comparison-view">
+                    <!-- Original Article Panel -->
+                    <div class="comparison-panel">
+                        <div class="comparison-header">
+                            <h4 class="text-l text-center font-bold text-gray-800 dark:text-gray-200">Original Article</h4>
+                        </div>
+                        <div class="comparison-content custom-scrollbar">
+                            <div id="originalArticle" class="markdown-content"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Rewritten Article Panel -->
+                    <div class="comparison-panel">
+                        <div class="comparison-header">
+                            <h4 class="text-l text-center font-bold text-gray-800 dark:text-gray-200">Rewritten Article</h4>
+                        </div>
+                        <div class="comparison-content custom-scrollbar">
+                            <div id="rewrittenArticle" class="markdown-content"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">
+        Article copied to clipboard!
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer mt-20 py-6 bg-white dark:bg-gray-800 shadow-[0_-4px_10px_rgba(0,0,0,0.05)] dark:shadow-[0_-4px_10px_rgba(0,0,0,0.2)]">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex items-center justify-center gap-2 text-gray-600 dark:text-gray-300">
+                <span>Made with</span>
+                <svg class="w-5 h-5 text-red-500 animate-pulse" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
+                </svg>
+                <span>by</span>
+                <span class="text-indigo-600 dark:text-indigo-400 font-medium">Shining Tools</span>
+                <span class="mx-2">•</span>
+                <span>&copy; 2025</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+        // Initialize marked with options
+        marked.setOptions({
+            breaks: true,
+            gfm: true,
+            headerIds: false,
+            mangle: false
+        });
+
+        const elements = {
+            urlInput: document.getElementById('articleUrl'),
+            originalText: document.getElementById('originalText'),
+            rewrittenText: document.getElementById('rewrittenText'),
+            scrapeSpinner: document.getElementById('scrapeSpinner'),
+            rewriteSpinner: document.getElementById('rewriteSpinner'),
+            viewArticleBtn: document.getElementById('viewArticleBtn'),
+            toast: document.getElementById('toast'),
+            progressBar: document.getElementById('progressBar'),
+            progressText: document.getElementById('progressText'),
+            progressStatus: document.getElementById('progressStatus'),
+            progressContainer: document.getElementById('progressContainer'),
+            originalArticle: document.getElementById('originalArticle'),
+            rewrittenArticle: document.getElementById('rewrittenArticle'),
+            modal: document.getElementById('modal'),
+            rewriteButton: document.getElementById('rewriteButton'),
+            scrapeButton: document.getElementById('scrapeButton')
+        };
+
+        const state = {
+            isLoading: false,
+            currentOriginalArticle: '',
+            currentRewrittenArticle: '',
+            progressInterval: null
+        };
+
+        const TOAST_DURATION = 3000;
+
+        function updateProgress(progress, status) {
+            elements.progressBar.style.width = `${progress}%`;
+            elements.progressText.textContent = `${progress}%`;
+            if (status) {
+                elements.progressStatus.textContent = status;
+            }
+        }
+
+        function startProgress() {
+            elements.progressContainer.classList.remove('hidden');
+            let progress = 0;
+            const statuses = [
+                'Initializing...',
+                'Processing article...',
+                'Analyzing content...',
+                'Generating rewrite...',
+                'Finalizing...'
+            ];
+            let statusIndex = 0;
+
+            updateProgress(0, statuses[0]);
+
+            state.progressInterval = setInterval(() => {
+                if (progress < 90) {
+                    progress += Math.random() * 15;
+                    progress = Math.min(90, progress);
+                    
+                    if (progress > (statusIndex + 1) * 20 && statusIndex < statuses.length - 1) {
+                        statusIndex++;
+                    }
+                    
+                    updateProgress(Math.round(progress), statuses[statusIndex]);
+                }
+            }, 1000);
+        }
+
+        function completeProgress() {
+            clearInterval(state.progressInterval);
+            updateProgress(100, 'Complete!');
+            setTimeout(() => {
+                elements.progressContainer.classList.add('hidden');
+            }, 1000);
+        }
+
+        function setLoading(isLoading, type) {
+            state.isLoading = isLoading;
+            const spinner = type === 'scrape' ? elements.scrapeSpinner : elements.rewriteSpinner;
+            spinner.classList.toggle('hidden', !isLoading);
+        }
+
+        function showToast(message) {
+            if (!message?.trim()) return;
+            
+            elements.toast.textContent = message;
+            elements.toast.classList.add('show');
+            setTimeout(() => {
+                elements.toast.classList.remove('show');
+            }, TOAST_DURATION);
+        }
+
+        // Add event listeners for input changes
+        elements.originalText.addEventListener('input', function() {
+            elements.rewriteButton.disabled = !this.value.trim();
+        });
+
+        elements.urlInput.addEventListener('input', function() {
+            elements.scrapeButton.disabled = !this.value.trim();
+        });
+
+        async function scrapeArticle() {
+            if (!elements.urlInput.value) {
+                showToast('Please enter a URL');
+                return;
+            }
+
+            setLoading(true, 'scrape');
+            startProgress();
+
+            try {
+                const response = await fetch('/scrape', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ url: elements.urlInput.value })
+                });
+                
+                const data = await response.json();
+                if (data.error) {
+                    throw new Error(data.error);
+                }
+                
+                elements.originalText.value = data.text;
+                elements.originalText.dataset.url = data.url;
+                elements.originalText.dataset.title = data.title;
+                
+                // Enable rewrite button when article is scraped
+                elements.rewriteButton.disabled = false;
+                
+                showToast('Article scraped successfully!');
+            } catch (error) {
+                showToast('Error scraping article: ' + error.message);
+            } finally {
+                setLoading(false, 'scrape');
+                completeProgress();
+            }
+        }
+
+        async function rewriteArticle() {
+            if (!elements.originalText.value) {
+                showToast('Please enter or scrape an article first');
+                return;
+            }
+
+            setLoading(true, 'rewrite');
+            startProgress();
+
+            try {
+                const response = await fetch('/rewrite', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        text: elements.originalText.value,
+                        url: elements.originalText.dataset.url,
+                        title: elements.originalText.dataset.title
+                    })
+                });
+
+                const data = await response.json();
+                if (!data.success) {
+                    throw new Error(data.error);
+                }
+
+                // Update state and UI
+                state.currentRewrittenArticle = data.result;
+                elements.viewArticleBtn.classList.remove('hidden');
+                
+                // Save to user-specific history
+                const currentUser = localStorage.getItem('currentUser');
+                const users = JSON.parse(localStorage.getItem('users'));
+                const userIndex = users.findIndex(u => u.username === currentUser);
+                
+                if (userIndex !== -1) {
+                    const historyItem = {
+                        date: new Date().toLocaleString(),
+                        original: elements.originalText.value,
+                        rewritten: data.result,
+                        url: elements.originalText.dataset.url,
+                        title: elements.originalText.dataset.title
+                    };
+                    
+                    if (!users[userIndex].history.articles) {
+                        users[userIndex].history.articles = [];
+                    }
+                    
+                    users[userIndex].history.articles.unshift(historyItem);
+                    if (users[userIndex].history.articles.length > 10) {
+                        users[userIndex].history.articles.pop();
+                    }
+                    
+                    localStorage.setItem('users', JSON.stringify(users));
+                }
+                
+                // Create and add preview to the right column
+                const previewSection = document.getElementById('previewSection');
+                const contentGrid = document.querySelector('.content-grid');
+                
+                // Clear previous previews
+                previewSection.innerHTML = '';
+                
+                const articlePreview = document.createElement('div');
+                articlePreview.className = 'article-preview-section glass-morphism';
+                
+                const timestamp = new Date().toLocaleString();
+                // Get approximately 600 words by taking 3000 characters
+                const words = data.result.split(/\s+/);
+                const previewContent = words.slice(0, 600).join(' ') + (words.length > 600 ? '...' : '');
+                const previewHtml = marked.parse(previewContent);
+                
+                articlePreview.innerHTML = `
+                    <div class="article-preview-title text-xl text-center font-semibold mb-4 text-gray-800 dark:text-gray-200">Generated Article</div>
+                    <div class="article-preview-meta text-center text-sm text-gray-600 dark:text-gray-400 mb-4">${timestamp}</div>
+                    <div class="article-preview-content markdown-body custom-scrollbar mobile-collapsed">${previewHtml}</div>
+                    <div class="mobile-show-more">
+                        <button onclick="toggleMobileContent(this)" class="text-indigo-600 dark:text-indigo-400 font-medium hover:text-indigo-800 dark:hover:text-indigo-300">
+                            Show More
+                        </button>
+                    </div>
+                    <div class="preview-button-container">
+                        <button class="read-more-btn bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-6 py-2 rounded-lg hover:opacity-90 transition-all" onclick="openModal()">
+                            Compare Article
+                        </button>
+                    </div>
+                `;
+                
+                // Add the preview and show the preview section
+                previewSection.appendChild(articlePreview);
+                
+                // Trigger layout change
+                contentGrid.classList.add('has-preview');
+                previewSection.classList.add('active');
+                
+                // Update modal content
+                updateModalContent();
+                showToast('Article rewritten successfully!');
+                
+                // Refresh history display
+                loadHistory();
+            } catch (error) {
+                showToast('Error rewriting article: ' + error.message);
+                // Clear any partial state on error
+                state.currentRewrittenArticle = '';
+                elements.viewArticleBtn.classList.add('hidden');
+            } finally {
+                setLoading(false, 'rewrite');
+                completeProgress();
+            }
+        }
+
+        function updateModalContent() {
+            if (!state.currentRewrittenArticle) return;
+            
+            // Format original article text as markdown
+            const originalText = formatToMarkdown(elements.originalText.value, elements.originalText.dataset.url);
+            const originalHtml = marked.parse(originalText);
+            const rewrittenHtml = marked.parse(state.currentRewrittenArticle);
+            
+            // Add markdown-body class to both panels for proper styling
+            elements.originalArticle.innerHTML = `<div class="markdown-body">${originalHtml}</div>`;
+            elements.rewrittenArticle.innerHTML = `<div class="markdown-body">${rewrittenHtml}</div>`;
+        }
+
+        function formatToMarkdown(text, url = '') {
+            const cleanText = text.trim().replace(/\n{3,}/g, '\n\n');
+            const paragraphs = cleanText.split('\n\n').filter(p => p.trim());
+            
+            if (!paragraphs.length) return '';
+
+            let markdown = `# ${paragraphs[0].trim()}\n\n`;
+            
+            if (url) {
+                markdown += `*Source: [${url}](${url})*\n\n`;
+            }
+            
+            if (paragraphs.length > 1) {
+                markdown += paragraphs.slice(1)
+                    .map(p => {
+                        p = p.trim();
+                        return p.startsWith('"') && p.endsWith('"') ? `> ${p}` : p;
+                    })
+                    .join('\n\n');
+            }
+            
+            return markdown;
+        }
+
+        function openModal() {
+            elements.modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            // Add animation classes
+            const modalContent = elements.modal.querySelector('.bg-white');
+            if (modalContent) {
+                modalContent.style.transform = 'scale(1)';
+                modalContent.style.opacity = '1';
+            }
+        }
+
+        function closeModal() {
+            elements.modal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+            // Reset animation classes
+            const modalContent = elements.modal.querySelector('.bg-white');
+            if (modalContent) {
+                modalContent.style.transform = 'scale(0.95)';
+                modalContent.style.opacity = '0';
+            }
+        }
+
+        async function copyArticle() {
+            try {
+                await navigator.clipboard.writeText(state.currentRewrittenArticle);
+                showToast('Article copied to clipboard!');
+            } catch (err) {
+                showToast('Failed to copy text: ' + err.message);
+            }
+        }
+
+        // Load history when page loads
+        window.addEventListener('load', loadHistory);
+
+        async function loadHistory() {
+            try {
+                const currentUser = localStorage.getItem('currentUser');
+                const users = JSON.parse(localStorage.getItem('users'));
+                const user = users.find(u => u.username === currentUser);
+                const historyList = document.getElementById('historyList');
+                
+                if (!user || !user.history || !user.history.articles || !user.history.articles.length) {
+                    historyList.innerHTML = '<p class="text-gray-500 dark:text-gray-400 text-center">No history yet</p>';
+                    return;
+                }
+                
+                historyList.innerHTML = user.history.articles.map((item, index) => `
+                    <div class="glass-morphism rounded-lg p-4 hover:shadow-lg transition-shadow">
+                        <div class="flex justify-between items-start gap-2">
+                            <div class="flex-1 min-w-0">
+                                <h3 class="text-l font-semibold text-gray-800 dark:text-gray-200 truncate">${item.title || 'Untitled Article'}</h3>
+                                <p class="text-sm text-gray-500 dark:text-gray-400 truncate">${item.date}</p>
+                                ${item.url ? `<a href="${item.url}" target="_blank" class="text-xs text-indigo-600 hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-200 truncate block mt-1">${item.url}</a>` : ''}
+                            </div>
+                            <div class="flex items-center gap-2 flex-shrink-0">
+                                <button onclick="loadHistoryItem(${index})" class="text-indigo-600 hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-200 p-1">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                    </svg>
+                                </button>
+                                <button onclick="deleteHistoryItem(${index})" class="text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-200 p-1">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading history:', error);
+                showToast('Error loading history');
+            }
+        }
+
+        async function loadHistoryItem(index) {
+            try {
+                const currentUser = localStorage.getItem('currentUser');
+                const users = JSON.parse(localStorage.getItem('users'));
+                const user = users.find(u => u.username === currentUser);
+                
+                if (!user || !user.history || !user.history.articles || !user.history.articles[index]) {
+                    throw new Error('Article not found in history');
+                }
+                
+                const item = user.history.articles[index];
+                
+                // Update the form fields
+                elements.originalText.value = item.original || '';
+                state.currentRewrittenArticle = item.rewritten || '';
+                elements.originalText.dataset.url = item.url || '';
+                elements.originalText.dataset.title = item.title || '';
+                
+                // Only show view button and open modal if we have rewritten content
+                if (state.currentRewrittenArticle) {
+                    elements.viewArticleBtn.classList.remove('hidden');
+                    updateModalContent();
+                    openModal();
+                } else {
+                    elements.viewArticleBtn.classList.add('hidden');
+                }
+            } catch (error) {
+                console.error('Error loading article:', error);
+                showToast('Error loading article: ' + error.message);
+            }
+        }
+
+        async function deleteHistoryItem(index) {
+            if (!confirm('Are you sure you want to delete this article from history?')) {
+                return;
+            }
+
+            try {
+                const currentUser = localStorage.getItem('currentUser');
+                const users = JSON.parse(localStorage.getItem('users'));
+                const userIndex = users.findIndex(u => u.username === currentUser);
+                
+                if (userIndex === -1) {
+                    throw new Error('User not found');
+                }
+                
+                users[userIndex].history.articles.splice(index, 1);
+                localStorage.setItem('users', JSON.stringify(users));
+                
+                await loadHistory();
+                showToast('Article deleted from history');
+            } catch (error) {
+                console.error('Error deleting article:', error);
+                showToast('Error deleting article');
+            }
+        }
+
+        function toggleMobileContent(button) {
+            const content = button.closest('.article-preview-section').querySelector('.article-preview-content');
+            const isCollapsed = content.classList.contains('mobile-collapsed');
+            
+            if (isCollapsed) {
+                content.classList.remove('mobile-collapsed');
+                button.textContent = 'Show Less';
+            } else {
+                content.classList.add('mobile-collapsed');
+                button.textContent = 'Show More';
+            }
+        }
+
+        // Update mobile menu toggle function
+        function toggleMobileMenu(event) {
+            event.stopPropagation();
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const submenu = document.getElementById('mobileSubmenu');
+            const icon = document.getElementById('mobileSubmenuIcon');
+            
+            mobileMenu.classList.toggle('active');
+            
+            // If closing the mobile menu, also close the submenu
+            if (!mobileMenu.classList.contains('active')) {
+                submenu.classList.add('hidden');
+                icon.classList.remove('rotate-180');
+            }
+        }
+
+        // Add mobile submenu toggle function
+        function toggleMobileSubmenu() {
+            const submenu = document.getElementById('mobileSubmenu');
+            const icon = document.getElementById('mobileSubmenuIcon');
+            submenu.classList.toggle('hidden');
+            icon.classList.toggle('rotate-180');
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const mobileMenuButton = document.querySelector('.mobile-menu-button');
+            
+            if (mobileMenu.classList.contains('active') && 
+                !mobileMenu.contains(event.target) && 
+                !mobileMenuButton.contains(event.target)) {
+                mobileMenu.classList.remove('active');
+            }
+        });
+
+        // Set active menu item based on current page
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPath = window.location.pathname;
+            const menuItems = document.querySelectorAll('.nav-item');
+            
+            menuItems.forEach(item => {
+                const itemPath = item.getAttribute('href');
+                if (currentPath === itemPath) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+        });
+
+        // Add logout function
+        function logout() {
+            localStorage.removeItem('currentUser');
+            window.location.href = '/login';
+        }
+
+        // Add dropdown toggle function
+        function toggleDropdown() {
+            const dropdownMenu = document.getElementById('dropdownMenu');
+            dropdownMenu.classList.toggle('hidden');
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const dropdown = document.getElementById('userDropdown');
+            const dropdownMenu = document.getElementById('dropdownMenu');
+            
+            if (!dropdown.contains(event.target) && !dropdownMenu.classList.contains('hidden')) {
+                dropdownMenu.classList.add('hidden');
+            }
+        });
+
+        // Update username display
+        function updateUsernameDisplay() {
+            const currentUser = localStorage.getItem('currentUser');
+            const usernameDisplay = document.getElementById('usernameDisplay');
+            const usernameMobile = document.getElementById('usernameMobile');
+            
+            if (currentUser) {
+                usernameDisplay.textContent = currentUser;
+                usernameMobile.textContent = currentUser;
+            }
+        }
+
+        // Call updateUsernameDisplay when page loads
+        document.addEventListener('DOMContentLoaded', updateUsernameDisplay);
+    </script>
+</body>
+</html> 

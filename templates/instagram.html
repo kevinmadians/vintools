@@ -1,0 +1,1303 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Generator - Shining Tools | Best Online Tools</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Create engaging Instagram posts with AI-powered headlines and captions. Shining Tools offers the best online Instagram content generator for viral social media content.">
+    <meta name="keywords" content="instagram generator, social media content creator, instagram caption generator, instagram post creator, AI social media tool">
+    <meta name="author" content="Shining Tools">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Instagram Generator - Shining Tools | Best Online Tools">
+    <meta property="og:description" content="Create engaging Instagram posts with AI-powered headlines and captions. Generate viral social media content easily.">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Shining Tools">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Instagram Generator - Shining Tools | Best Online Tools">
+    <meta name="twitter:description" content="Create engaging Instagram posts with AI-powered headlines and captions. Generate viral social media content easily.">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://shiningtools.com/instagram-generator">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lexend+Deca:wght@400;500;600;700&display=swap');
+        
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --bg-gradient: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+            --bg-gradient-dark: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --card-bg-dark: rgba(31, 41, 55, 0.95);
+            --text: #1f2937;
+            --text-dark: #f3f4f6;
+            --shadow-light: rgba(0, 0, 0, 0.1);
+            --shadow-dark: rgba(0, 0, 0, 0.3);
+            --primary-gradient: linear-gradient(135deg, #6366f1, #a855f7);
+        }
+
+        html {
+            transition: background-color 0.3s ease;
+        }
+
+        html.dark {
+            background-color: #111827;
+        }
+
+        body {
+            font-family: 'Lexend Deca', 'Inter', sans-serif;
+            background: var(--bg-gradient);
+            color: var(--text);
+            min-height: 100vh;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .dark body {
+            background: var(--bg-gradient-dark);
+            color: var(--text-dark);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: opacity 0.3s;
+        }
+        
+        .gradient-text:hover {
+            opacity: 0.9;
+        }
+
+        .glass-morphism {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .dark .glass-morphism {
+            background: rgba(17, 24, 39, 0.8);
+            border-color: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .preview-box {
+            aspect-ratio: 1;
+            max-width: 400px;
+            margin: 0 auto;
+            border: 2px dashed #6366f1;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: white;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .dark .preview-box {
+            border-color: #818cf8;
+            background: #1f2937;
+        }
+
+        /* Input styles */
+        input[type="url"], input[type="text"], textarea {
+            border: 1px solid #e5e7eb;
+            transition: all 0.3s ease;
+        }
+
+        .dark input[type="url"], 
+        .dark input[type="text"], 
+        .dark textarea {
+            border-color: rgba(75, 85, 99, 0.4);
+        }
+
+        input[type="url"]:hover, 
+        input[type="text"]:hover, 
+        textarea:hover {
+            border-color: #a5b4fc;
+        }
+
+        .dark input[type="url"]:hover, 
+        .dark input[type="text"]:hover, 
+        .dark textarea:hover {
+            border-color: #818cf8;
+        }
+
+        input[type="url"]:focus, 
+        input[type="text"]:focus, 
+        textarea:focus {
+            border-color: #6366f1;
+            box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.1);
+        }
+
+        /* Button styles */
+        button {
+            transition: all 0.3s ease;
+        }
+
+        .dark button.bg-white {
+            background: #1f2937 !important;
+        }
+
+        /* Text colors for dark mode */
+        .dark .text-gray-800 {
+            color: #f3f4f6 !important;
+        }
+
+        .dark .text-gray-500 {
+            color: #9ca3af !important;
+        }
+
+        /* Preview content styles */
+        #postPreview, #captionPreview {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .dark #postPreview, .dark #captionPreview {
+            background: #1f2937;
+            color: #f3f4f6;
+        }
+
+        /* Copy buttons */
+        .copy-button {
+            background: white;
+            color: #6366f1;
+            border: 1px solid #6366f1;
+            transition: all 0.3s ease;
+        }
+
+        .dark .copy-button {
+            background: #1f2937;
+            color: #818cf8;
+            border-color: #818cf8;
+        }
+
+        .dark .copy-button:hover {
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        /* Toast notification */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 1rem;
+            background: #4338ca;
+            color: white;
+            border-radius: 0.5rem;
+            transform: translateY(150%);
+            transition: transform 0.3s ease-in-out;
+            z-index: 100;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+        }
+
+        /* Navigation styles */
+        nav {
+            transition: all 0.3s ease;
+            background: transparent;
+            padding: 0.75rem 0;
+        }
+
+        .nav-container {
+            background: var(--card-bg);
+            border-radius: 0.75rem;
+            padding: 0.75rem 1.5rem;
+            border: 1px solid rgba(229, 231, 235, 0.5);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-top: 1rem;
+            position: relative;
+        }
+
+        .dark .nav-container {
+            background: var(--card-bg-dark);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-menu-button {
+            display: none;
+            padding: 0.5rem;
+            border-radius: 0.375rem;
+            color: var(--text);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .mobile-menu-button:hover {
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .mobile-menu {
+            display: none;
+            position: absolute;
+            top: calc(100% + 0.5rem);
+            left: 0;
+            right: 0;
+            background: var(--card-bg);
+            padding: 0.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 12px var(--shadow-light);
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 40;
+            margin: 0 1rem;
+        }
+
+        .dark .mobile-menu {
+            background: var(--card-bg-dark);
+            box-shadow: 0 4px 12px var(--shadow-dark);
+        }
+
+        .mobile-menu.active {
+            opacity: 1;
+            transform: translateY(0);
+            display: block;
+        }
+
+        .mobile-menu .nav-item {
+            display: block;
+            padding: 0.75rem 1rem;
+            margin: 0.25rem 0;
+            border-radius: 0.5rem;
+            color: var(--text);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .mobile-menu .nav-item:hover {
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .mobile-menu .nav-item.active {
+            background: var(--primary-gradient);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-button {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .nav-container {
+                margin-top: 0.5rem;
+                padding: 0.5rem 1rem;
+            }
+        }
+
+        /* History item styles */
+        .history-item {
+            background: rgba(255, 255, 255, 0.95) !important;
+            border: 1px solid rgba(229, 231, 235, 0.2);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+        }
+
+        .dark .history-item {
+            background: rgba(31, 41, 55, 0.95) !important;
+            border-color: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .history-item:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        .dark .history-item:hover {
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            background: rgba(55, 65, 81, 0.95) !important;
+        }
+
+        /* Loading bar styles */
+        .loading-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to right, #6366f1, #a855f7);
+            transform-origin: 0 50%;
+            transform: scaleX(0);
+            opacity: 0;
+            transition: transform 0.5s ease-in-out, opacity 0.3s ease;
+            z-index: 100;
+        }
+
+        .loading-bar.active {
+            animation: loading 1.5s ease-in-out;
+            animation-fill-mode: forwards;
+            opacity: 1;
+        }
+
+        @keyframes loading {
+            0% {
+                transform: scaleX(0);
+            }
+            50% {
+                transform: scaleX(0.7);
+            }
+            100% {
+                transform: scaleX(1);
+            }
+        }
+
+        /* Custom scrollbar for history section */
+        .history-section {
+            max-height: 400px;
+            overflow-y: auto;
+            padding-right: 8px;
+        }
+
+        .history-section::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .history-section::-webkit-scrollbar-track {
+            background: rgba(243, 244, 246, 0.1);
+            border-radius: 4px;
+        }
+
+        .history-section::-webkit-scrollbar-thumb {
+            background: rgba(99, 102, 241, 0.3);
+            border-radius: 4px;
+        }
+
+        .dark .history-section::-webkit-scrollbar-track {
+            background: rgba(31, 41, 55, 0.5);
+        }
+
+        .dark .history-section::-webkit-scrollbar-thumb {
+            background: rgba(99, 102, 241, 0.5);
+        }
+
+        /* History item text colors */
+        .history-item h3 {
+            color: #1f2937;
+            transition: color 0.3s ease;
+        }
+
+        .dark .history-item h3 {
+            color: #f3f4f6 !important;
+        }
+
+        .history-item .text-gray-900 {
+            color: #1f2937;
+        }
+
+        .dark .history-item .text-gray-900 {
+            color: #f3f4f6 !important;
+        }
+
+        /* Footer styles */
+        .footer {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border-top: 1px solid rgba(229, 231, 235, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .dark .footer {
+            background: rgba(17, 24, 39, 0.8);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-link {
+            transition: all 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: var(--primary);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            /* Remove all backdrop filters and blur effects */
+            .glass-morphism,
+            .preview-box,
+            .history-item,
+            nav,
+            .footer,
+            .modal,
+            .btn {
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+            }
+
+            /* Use solid backgrounds instead of transparent ones */
+            .glass-morphism {
+                background: rgba(255, 255, 255, 0.98) !important;
+                border: 1px solid rgba(0, 0, 0, 0.1) !important;
+            }
+
+            .dark .glass-morphism {
+                background: rgba(17, 24, 39, 0.98) !important;
+                border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            }
+
+            .preview-box {
+                background: rgba(255, 255, 255, 0.98) !important;
+                border: 1px solid rgba(0, 0, 0, 0.1) !important;
+            }
+
+            .dark .preview-box {
+                background: rgba(17, 24, 39, 0.98) !important;
+                border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            }
+
+            .history-item {
+                background: rgba(255, 255, 255, 0.98) !important;
+                border: 1px solid rgba(0, 0, 0, 0.1) !important;
+            }
+
+            .dark .history-item {
+                background: rgba(17, 24, 39, 0.98) !important;
+                border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            }
+
+            nav.scrolled {
+                background: rgba(255, 255, 255, 0.98) !important;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+            }
+
+            .dark nav.scrolled {
+                background: rgba(17, 24, 39, 0.98) !important;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+            }
+
+            .footer {
+                background: rgba(255, 255, 255, 0.98) !important;
+                border-top: 1px solid rgba(0, 0, 0, 0.1) !important;
+            }
+
+            .dark .footer {
+                background: rgba(17, 24, 39, 0.98) !important;
+                border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+            }
+
+            /* Optimize shadows and transitions */
+            .glass-morphism,
+            .preview-box,
+            .history-item,
+            .btn {
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+            }
+
+            .dark .glass-morphism,
+            .dark .preview-box,
+            .dark .history-item,
+            .dark .btn {
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+            }
+
+            /* Optimize transitions */
+            * {
+                transition: background-color 0.2s ease, color 0.2s ease !important;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .glass-morphism {
+                padding: 1rem;
+            }
+
+            .grid.grid-cols-1.md\:grid-cols-2 {
+                grid-template-columns: 1fr;
+            }
+
+            .flex.gap-4 {
+                flex-direction: column;
+            }
+
+            .flex.gap-4 button {
+                width: 100%;
+            }
+
+            .preview-box {
+                max-width: 100%;
+            }
+
+            .toast {
+                left: 1rem;
+                right: 1rem;
+                bottom: 1rem;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 640px) {
+            nav .flex.items-center.space-x-8 {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+
+            nav .flex.items-center.space-x-6 {
+                margin-top: 0.5rem;
+            }
+
+            .nav-content {
+                height: auto;
+                padding: 1rem 0;
+            }
+
+            .history-item {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .history-item .flex-1 {
+                width: 100%;
+            }
+
+            .history-item .flex.items-center.gap-2 {
+                width: 100%;
+                justify-content: flex-start;
+            }
+        }
+
+        /* Adjust navigation for mobile */
+        @media (max-width: 480px) {
+            nav {
+                padding: 0.5rem 0;
+            }
+
+            .gradient-text {
+                font-size: 1.5rem;
+            }
+
+            nav .flex.items-center.space-x-6 {
+                gap: 1rem;
+            }
+
+            h2.text-2xl {
+                font-size: 1.25rem;
+            }
+
+            .btn {
+                padding: 0.75rem 1rem;
+                font-size: 0.875rem;
+            }
+        }
+
+        /* Remove task button styles */
+        .task-button {
+            display: none !important;
+        }
+    </style>
+</head>
+<body class="min-h-screen py-8">
+    <!-- Add auth check at the start of body -->
+    <script>
+        // Check if user is logged in
+        if (!localStorage.getItem('currentUser')) {
+            window.location.href = '/login';
+        }
+    </script>
+
+    <!-- Loading Bar -->
+    <div class="loading-bar" id="loadingBar"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 pt-4">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="nav-container">
+                <div class="flex justify-between items-center">
+                    <a href="/" class="text-2xl font-bold gradient-text hover:opacity-80 transition-opacity">Shining Tools</a>
+                    
+                    <!-- Mobile Menu Button -->
+                    <button class="mobile-menu-button" onclick="toggleMobileMenu(event)">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+
+                    <!-- Desktop Navigation Links -->
+                    <div class="nav-links hidden md:flex items-center space-x-6">
+                        <a href="/" class="text-gray-800 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400">
+                            Article Rewriter
+                        </a>
+                        <a href="/instagram" class="text-indigo-600 dark:text-indigo-400 font-medium">
+                            Instagram Generator
+                        </a>
+                        <div class="relative" id="userDropdown">
+                            <button onclick="toggleDropdown()" class="flex items-center space-x-1 text-gray-800 dark:text-gray-200 hover:text-indigo-600">
+                                <span id="usernameDisplay"></span>
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </button>
+                            <div id="dropdownMenu" class="hidden absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg py-2">
+                                <button onclick="logout()" class="w-full text-left px-4 py-2 text-red-600 dark:text-red-400 hover:bg-gray-100 dark:hover:bg-gray-700">
+                                    Logout
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mobile Menu -->
+                    <div class="mobile-menu">
+                        <a href="/" class="nav-item">
+                            Article Rewriter
+                        </a>
+                        <a href="/instagram" class="nav-item">
+                            Instagram Generator
+                        </a>
+                        <div class="nav-item">
+                            <div class="flex justify-between items-center" onclick="toggleMobileSubmenu()">
+                                <span id="usernameMobile"></span>
+                                <svg class="w-4 h-4 transform transition-transform" id="mobileSubmenuIcon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </div>
+                            <div id="mobileSubmenu" class="hidden pl-4 mt-2">
+                                <button onclick="logout()" class="nav-item text-red-600 dark:text-red-400 hover:text-red-800 dark:hover:text-red-600 w-full text-left">
+                                    Logout
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto px-4 max-w-6xl mt-20">
+        <div class="text-center mb-6 mt-8">
+            <h1 class="text-4xl font-bold mb-3 gradient-text">Instagram Generator</h1>
+            <p class="text-lg text-gray-600 dark:text-gray-300">Create engaging Instagram posts with AI-powered headlines and captions</p>
+        </div>
+
+        <!-- URL Input Section -->
+        <div class="glass-morphism rounded-xl shadow-lg p-6 mb-6">
+            <h2 class="text-xl text-center mb-4 text-gray-800 dark:text-gray-200">Article URL</h2>
+            <div class="flex gap-4">
+                <input type="text" id="articleUrl" 
+                       class="flex-1 p-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400 bg-white dark:bg-gray-800 dark:text-gray-200"
+                       placeholder="Paste your article URL here...">
+                <button onclick="generatePost()" 
+                        class="btn bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-6 py-3 rounded-lg transition-all flex items-center gap-2 shadow-lg disabled:pointer-events-none disabled:opacity-50 disabled:bg-gray-300 dark:disabled:bg-gray-600"
+                        disabled>
+                    <span>Generate</span>
+                    <svg id="generateSpinner" class="animate-spin h-5 w-5 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Progress Bar -->
+        <div id="progressContainer" class="w-full mb-6 hidden">
+            <div class="flex justify-between mb-1">
+                <span class="text-sm font-medium text-indigo-700 dark:text-indigo-300" id="progressText">0%</span>
+                <span class="text-sm font-medium text-indigo-700 dark:text-indigo-300" id="progressStatus">Initializing...</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                <div id="progressBar" class="bg-gradient-to-r from-indigo-500 to-purple-500 h-2.5 rounded-full transition-all duration-300" style="width: 0%"></div>
+            </div>
+        </div>
+
+        <!-- Preview Section -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <!-- Instagram Post Preview -->
+            <div class="glass-morphism rounded-xl shadow-lg p-6">
+                <h3 class="text-xl text-center mb-4 text-gray-800 dark:text-gray-200">Instagram Headline</h3>
+                <div class="space-y-4">
+                    <div id="headlineOptions" class="space-y-3">
+                        <!-- Headlines will be inserted here -->
+                    </div>
+                    <div class="preview-box hidden" id="postPreview">
+                        <p class="text-gray-500 dark:text-gray-400">Select a headline above to preview it here...</p>
+                    </div>
+                </div>
+                <button onclick="copyHeadline()" 
+                        class="copy-button w-full mt-4 px-4 py-2 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                        id="copyHeadlineBtn" disabled>
+                    Copy Selected Headline
+                </button>
+            </div>
+
+            <!-- Caption Preview -->
+            <div class="glass-morphism rounded-xl shadow-lg p-6">
+                <h3 class="text-xl text-center mb-4 text-gray-800 dark:text-gray-200">Instagram Captions</h3>
+                <div class="space-y-4">
+                    <div id="captionOptions" class="space-y-3">
+                        <!-- Caption options will be inserted here -->
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 rounded-lg p-4 min-h-[400px] text-gray-800 dark:text-gray-200" id="captionPreview">
+                        Select a caption variation above to preview it here...
+                    </div>
+                </div>
+                <button onclick="copyCaption()" 
+                        class="copy-button w-full mt-4 px-4 py-2 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                        id="copyCaptionBtn" disabled>
+                    Copy Selected Caption
+                </button>
+            </div>
+        </div>
+
+        <!-- Instagram Post History -->
+        <div class="glass-morphism rounded-xl shadow-lg p-6">
+            <h2 class="text-xl text-center mb-4 text-gray-800 dark:text-gray-200">Post History</h2>
+            <div id="historyList" class="space-y-3 history-section custom-scrollbar">
+                <!-- History items will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">
+        Copied to clipboard!
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer mt-20 py-6 bg-white dark:bg-gray-800 shadow-[0_-4px_10px_rgba(0,0,0,0.05)] dark:shadow-[0_-4px_10px_rgba(0,0,0,0.2)]">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex items-center justify-center gap-2 text-gray-600 dark:text-gray-300">
+                <span>Made with</span>
+                <svg class="w-5 h-5 text-red-500 animate-pulse" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
+                </svg>
+                <span>by</span>
+                <span class="text-indigo-600 dark:text-indigo-400 font-medium">Shining Tools</span>
+                <span class="mx-2">•</span>
+                <span>&copy; 2025</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let currentHeadlines = [];
+        let currentCaptions = [];
+
+        // Load history when page loads
+        window.addEventListener('load', () => {
+            loadHistory();
+            // Get the generate button
+            const generateButton = document.querySelector('button[onclick="generatePost()"]');
+            // Add input event listener to article URL input
+            elements.articleUrl.addEventListener('input', (e) => {
+                generateButton.disabled = !e.target.value.trim();
+            });
+            // Set initial button state
+            generateButton.disabled = !elements.articleUrl.value.trim();
+        });
+
+        const elements = {
+            articleUrl: document.getElementById('articleUrl'),
+            headlineOptions: document.getElementById('headlineOptions'),
+            captionOptions: document.getElementById('captionOptions'),
+            postPreview: document.getElementById('postPreview'),
+            captionPreview: document.getElementById('captionPreview'),
+            copyHeadlineBtn: document.getElementById('copyHeadlineBtn'),
+            copyCaptionBtn: document.getElementById('copyCaptionBtn'),
+            generateSpinner: document.getElementById('generateSpinner'),
+            progressBar: document.getElementById('progressBar'),
+            progressText: document.getElementById('progressText'),
+            progressStatus: document.getElementById('progressStatus'),
+            progressContainer: document.getElementById('progressContainer'),
+            toast: document.getElementById('toast'),
+            generateBtn: document.querySelector('button[onclick="generatePost()"]')
+        };
+
+        const state = {
+            progressInterval: null
+        };
+
+        function updateProgress(progress, status) {
+            elements.progressBar.style.width = `${progress}%`;
+            elements.progressText.textContent = `${progress}%`;
+            if (status) {
+                elements.progressStatus.textContent = status;
+            }
+        }
+
+        function startProgress() {
+            elements.progressContainer.classList.remove('hidden');
+            let progress = 0;
+            const statuses = [
+                'Initializing...',
+                'Scraping article...',
+                'Analyzing content...',
+                'Generating headlines...',
+                'Creating captions...',
+                'Finalizing...'
+            ];
+            let statusIndex = 0;
+
+            updateProgress(0, statuses[0]);
+
+            state.progressInterval = setInterval(() => {
+                if (progress < 90) {
+                    progress += Math.random() * 15;
+                    progress = Math.min(90, progress);
+                    
+                    if (progress > (statusIndex + 1) * 15 && statusIndex < statuses.length - 1) {
+                        statusIndex++;
+                    }
+                    
+                    updateProgress(Math.round(progress), statuses[statusIndex]);
+                }
+            }, 1000);
+        }
+
+        function completeProgress() {
+            clearInterval(state.progressInterval);
+            updateProgress(100, 'Complete!');
+            setTimeout(() => {
+                elements.progressContainer.classList.add('hidden');
+            }, 1000);
+        }
+
+        async function generatePost() {
+            const urlInput = document.getElementById('articleUrl');
+            const generateBtn = document.querySelector('button[onclick="generatePost()"]');
+            const spinner = document.getElementById('generateSpinner');
+            const headlineOptions = document.getElementById('headlineOptions');
+            const captionOptions = document.getElementById('captionOptions');
+            
+            try {
+                // Show loading state
+                generateBtn.disabled = true;
+                spinner.classList.remove('hidden');
+                startProgress();
+                
+                const response = await fetch('/generate_instagram', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        url: urlInput.value
+                    })
+                });
+                
+                const data = await response.json();
+                if (!data.success) {
+                    throw new Error(data.error);
+                }
+                
+                // Update UI with generated content
+                headlineOptions.innerHTML = data.headlines.map((headline, index) => `
+                    <div class="option p-4 bg-white dark:bg-gray-800 rounded-lg hover:shadow-md transition-shadow cursor-pointer">
+                        <div class="flex items-start space-x-3">
+                            <input type="radio" id="headline${index}" name="headline" value="${index}" 
+                                   class="mt-1" onchange="updatePreview(${index})">
+                            <label for="headline${index}" class="text-gray-800 dark:text-gray-200 cursor-pointer flex-1">
+                                ${headline}
+                            </label>
+                        </div>
+                    </div>
+                `).join('');
+
+                captionOptions.innerHTML = data.captions.map((caption, index) => `
+                    <div class="option p-4 bg-white dark:bg-gray-800 rounded-lg hover:shadow-md transition-shadow cursor-pointer">
+                        <div class="flex items-start space-x-3">
+                            <input type="radio" id="caption${index}" name="caption" value="${index}" 
+                                   class="mt-1" onchange="updateCaptionPreview(${index})">
+                            <label for="caption${index}" class="text-gray-800 dark:text-gray-200 cursor-pointer flex-1">
+                                ${caption}
+                            </label>
+                        </div>
+                    </div>
+                `).join('');
+                
+                // Enable copy buttons
+                document.getElementById('copyHeadlineBtn').disabled = false;
+                document.getElementById('copyCaptionBtn').disabled = false;
+                
+                // Save to history
+                saveToHistory({
+                    date: new Date().toLocaleString(),
+                    headlines: data.headlines,
+                    captions: data.captions,
+                    url: urlInput.value
+                });
+                
+                showToast('Post generated successfully!');
+            } catch (error) {
+                console.error('Error:', error);
+                showToast('Error generating post: ' + error.message);
+                headlineOptions.innerHTML = '';
+                captionOptions.innerHTML = '';
+            } finally {
+                // Reset loading state
+                generateBtn.disabled = false;
+                spinner.classList.add('hidden');
+                completeProgress();
+            }
+        }
+
+        // Save Instagram post to user's history
+        function saveToHistory(post) {
+            try {
+                const currentUser = localStorage.getItem('currentUser');
+                let users = JSON.parse(localStorage.getItem('users')) || [];
+                const userIndex = users.findIndex(u => u.username === currentUser);
+                
+                if (userIndex !== -1) {
+                    // Initialize history structure if it doesn't exist
+                    if (!users[userIndex].history) {
+                        users[userIndex].history = {};
+                    }
+                    if (!users[userIndex].history.instagram) {
+                        users[userIndex].history.instagram = [];
+                    }
+                    
+                    // Add new post to user's history
+                    users[userIndex].history.instagram.unshift(post);
+                    
+                    // Keep only the last 10 posts
+                    if (users[userIndex].history.instagram.length > 10) {
+                        users[userIndex].history.instagram.pop();
+                    }
+                    
+                    // Save updated users array back to localStorage
+                    localStorage.setItem('users', JSON.stringify(users));
+                    
+                    // Refresh history display
+                    loadHistory();
+                }
+            } catch (error) {
+                console.error('Error saving to history:', error);
+                showToast('Error saving to history');
+            }
+        }
+
+        // Load Instagram post history
+        async function loadHistory() {
+            try {
+                const currentUser = localStorage.getItem('currentUser');
+                const users = JSON.parse(localStorage.getItem('users')) || [];
+                const user = users.find(u => u.username === currentUser);
+                const historyList = document.getElementById('historyList');
+                
+                // Check if user exists and has history
+                if (!user || !user.history || !user.history.instagram || !user.history.instagram.length) {
+                    historyList.innerHTML = '<p class="text-gray-500 dark:text-gray-400 text-center">No history yet</p>';
+                    return;
+                }
+                
+                // Display user's history
+                historyList.innerHTML = user.history.instagram.map((item, index) => `
+                    <div class="glass-morphism rounded-lg p-4 hover:shadow-lg transition-shadow">
+                        <div class="flex justify-between items-start gap-2">
+                            <div class="flex-1 min-w-0">
+                                <h3 class="text-l font-semibold text-gray-800 dark:text-gray-200 truncate">
+                                    ${item.headlines ? item.headlines[0] : 'Untitled Post'}
+                                </h3>
+                                <p class="text-sm text-gray-500 dark:text-gray-400 truncate">${item.date}</p>
+                                ${item.url ? `<a href="${item.url}" target="_blank" class="text-xs text-indigo-600 hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-200 truncate block mt-1">${item.url}</a>` : ''}
+                            </div>
+                            <div class="flex items-center gap-2 flex-shrink-0">
+                                <button onclick="loadHistoryItem(${index})" class="text-indigo-600 hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-200 p-1">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                    </svg>
+                                </button>
+                                <button onclick="deleteHistoryItem(${index})" class="text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-200 p-1">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading history:', error);
+                showToast('Error loading history');
+            }
+        }
+
+        // Load history item
+        function loadHistoryItem(index) {
+            try {
+                const currentUser = localStorage.getItem('currentUser');
+                const users = JSON.parse(localStorage.getItem('users')) || [];
+                const user = users.find(u => u.username === currentUser);
+                
+                if (!user || !user.history || !user.history.instagram || !user.history.instagram[index]) {
+                    throw new Error('Post not found in history');
+                }
+                
+                const item = user.history.instagram[index];
+                const headlineOptions = document.getElementById('headlineOptions');
+                const captionOptions = document.getElementById('captionOptions');
+                const urlInput = document.getElementById('articleUrl');
+                
+                // Update the UI with the history item content
+                if (item.headlines) {
+                    headlineOptions.innerHTML = item.headlines.map((headline, idx) => `
+                        <div class="option p-4 bg-white dark:bg-gray-800 rounded-lg hover:shadow-md transition-shadow cursor-pointer">
+                            <div class="flex items-start space-x-3">
+                                <input type="radio" id="headline${idx}" name="headline" value="${idx}" 
+                                       class="mt-1" onchange="updatePreview(${idx})">
+                                <label for="headline${idx}" class="text-gray-800 dark:text-gray-200 cursor-pointer flex-1">
+                                    ${headline}
+                                </label>
+                            </div>
+                        </div>
+                    `).join('');
+                }
+                
+                if (item.captions) {
+                    captionOptions.innerHTML = item.captions.map((caption, idx) => `
+                        <div class="option p-4 bg-white dark:bg-gray-800 rounded-lg hover:shadow-md transition-shadow cursor-pointer">
+                            <div class="flex items-start space-x-3">
+                                <input type="radio" id="caption${idx}" name="caption" value="${idx}" 
+                                       class="mt-1" onchange="updateCaptionPreview(${idx})">
+                                <label for="caption${idx}" class="text-gray-800 dark:text-gray-200 cursor-pointer flex-1">
+                                    ${caption}
+                                </label>
+                            </div>
+                        </div>
+                    `).join('');
+                }
+                
+                // Update URL input
+                if (urlInput && item.url) {
+                    urlInput.value = item.url;
+                }
+
+                // Enable copy buttons
+                document.getElementById('copyHeadlineBtn').disabled = false;
+                document.getElementById('copyCaptionBtn').disabled = false;
+                
+                showToast('Post loaded from history');
+            } catch (error) {
+                console.error('Error loading post:', error);
+                showToast('Error loading post: ' + error.message);
+            }
+        }
+
+        // Delete history item
+        async function deleteHistoryItem(index) {
+            if (!confirm('Are you sure you want to delete this post from history?')) {
+                return;
+            }
+
+            try {
+                const currentUser = localStorage.getItem('currentUser');
+                let users = JSON.parse(localStorage.getItem('users')) || [];
+                const userIndex = users.findIndex(u => u.username === currentUser);
+                
+                if (userIndex === -1) {
+                    throw new Error('User not found');
+                }
+                
+                // Remove the item from user's history
+                users[userIndex].history.instagram.splice(index, 1);
+                
+                // Save updated users array back to localStorage
+                localStorage.setItem('users', JSON.stringify(users));
+                
+                // Refresh history display
+                loadHistory();
+                showToast('Post deleted from history');
+            } catch (error) {
+                console.error('Error deleting post:', error);
+                showToast('Error deleting post');
+            }
+        }
+
+        // Update preview functions
+        function updatePreview(index) {
+            const postPreview = document.getElementById('postPreview');
+            const selectedHeadline = document.querySelector(`label[for="headline${index}"]`).textContent.trim();
+            postPreview.classList.remove('hidden');
+            postPreview.innerHTML = `<p class="text-gray-800 dark:text-gray-200 font-semibold text-lg">${selectedHeadline}</p>`;
+        }
+
+        function updateCaptionPreview(index) {
+            const selectedCaption = document.querySelector(`label[for="caption${index}"]`).textContent.trim();
+            const captionPreview = document.getElementById('captionPreview');
+            captionPreview.innerText = selectedCaption;
+        }
+
+        // Copy functions
+        async function copyHeadline() {
+            const selectedRadio = document.querySelector('input[name="headline"]:checked');
+            if (!selectedRadio) {
+                showToast('Please select a headline first');
+                return;
+            }
+            const headline = document.querySelector(`label[for="headline${selectedRadio.value}"]`).textContent.trim();
+            try {
+                await navigator.clipboard.writeText(headline);
+                showToast('Headline copied to clipboard!');
+            } catch (err) {
+                showToast('Failed to copy headline');
+            }
+        }
+
+        async function copyCaption() {
+            const selectedRadio = document.querySelector('input[name="caption"]:checked');
+            if (!selectedRadio) {
+                showToast('Please select a caption first');
+                return;
+            }
+            const caption = document.querySelector(`label[for="caption${selectedRadio.value}"]`).textContent.trim();
+            try {
+                await navigator.clipboard.writeText(caption);
+                showToast('Caption copied to clipboard!');
+            } catch (err) {
+                showToast('Failed to copy caption');
+            }
+        }
+
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            const isDark = document.documentElement.classList.contains('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Check for saved theme preference
+        window.addEventListener('load', () => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.classList.add('dark');
+            }
+        });
+
+        // Add scroll event listener for nav transparency
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 10) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu functionality
+        function toggleMobileMenu(event) {
+            event.stopPropagation();
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const submenu = document.getElementById('mobileSubmenu');
+            const icon = document.getElementById('mobileSubmenuIcon');
+            
+            mobileMenu.classList.toggle('active');
+            
+            // If closing the mobile menu, also close the submenu
+            if (!mobileMenu.classList.contains('active')) {
+                submenu.classList.add('hidden');
+                icon.classList.remove('rotate-180');
+            }
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const mobileMenuButton = document.querySelector('.mobile-menu-button');
+            
+            if (mobileMenu.classList.contains('active') && 
+                !mobileMenu.contains(event.target) && 
+                !mobileMenuButton.contains(event.target)) {
+                mobileMenu.classList.remove('active');
+            }
+        });
+
+        // Set active menu item based on current page
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPath = window.location.pathname;
+            const menuItems = document.querySelectorAll('.nav-item');
+            
+            menuItems.forEach(item => {
+                const itemPath = item.getAttribute('href');
+                if (currentPath === itemPath) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+        });
+
+        // Add logout function
+        function logout() {
+            localStorage.removeItem('currentUser');
+            window.location.href = '/login';
+        }
+
+        // Add dropdown toggle function
+        function toggleDropdown() {
+            const dropdownMenu = document.getElementById('dropdownMenu');
+            dropdownMenu.classList.toggle('hidden');
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const dropdown = document.getElementById('userDropdown');
+            const dropdownMenu = document.getElementById('dropdownMenu');
+            
+            if (!dropdown.contains(event.target) && !dropdownMenu.classList.contains('hidden')) {
+                dropdownMenu.classList.add('hidden');
+            }
+        });
+
+        // Update username display
+        function updateUsernameDisplay() {
+            const currentUser = localStorage.getItem('currentUser');
+            const usernameDisplay = document.getElementById('usernameDisplay');
+            const usernameMobile = document.getElementById('usernameMobile');
+            
+            if (currentUser) {
+                usernameDisplay.textContent = currentUser;
+                usernameMobile.textContent = currentUser;
+            }
+        }
+
+        // Call updateUsernameDisplay and loadHistory when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            updateUsernameDisplay();
+            loadHistory();
+        });
+
+        // Add mobile submenu toggle function
+        function toggleMobileSubmenu() {
+            const submenu = document.getElementById('mobileSubmenu');
+            const icon = document.getElementById('mobileSubmenuIcon');
+            submenu.classList.toggle('hidden');
+            icon.classList.toggle('rotate-180');
+        }
+    </script>
+</body>
+</html> 
