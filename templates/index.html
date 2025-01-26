@@ -1591,9 +1591,18 @@
             try {
                 const response = await fetch('/scrape', {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
                     body: JSON.stringify({ url: elements.urlInput.value })
                 });
+                
+                // Check if response is JSON
+                const contentType = response.headers.get('content-type');
+                if (!contentType || !contentType.includes('application/json')) {
+                    throw new Error('Server returned non-JSON response. Please try again.');
+                }
                 
                 const data = await response.json();
                 if (data.error) {
@@ -1609,7 +1618,13 @@
                 
                 showToast('Article scraped successfully!');
             } catch (error) {
-                showToast('Error scraping article: ' + error.message);
+                console.error('Scraping error:', error);
+                showToast('Error scraping article: ' + (error.message || 'Failed to scrape article'));
+                // Clear any partial data
+                elements.originalText.value = '';
+                elements.originalText.dataset.url = '';
+                elements.originalText.dataset.title = '';
+                elements.rewriteButton.disabled = true;
             } finally {
                 setLoading(false, 'scrape');
                 completeProgress();
