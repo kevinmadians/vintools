@@ -465,12 +465,88 @@ def fetch_trending_kpop_news():
     try:
         all_news = []
         
-        # 1. Google News - Split into multiple smaller queries
+        # 1. Google News - Direct publication sources
+        publication_urls = [
+            'https://news.google.com/publications/CAAqBwgKMKeRpQwwuYm0BA?hl=en-ID&gl=ID&ceid=ID%3Aen',  # allkpop
+            'https://news.google.com/publications/CAAqJAgKIh5DQklTRUFnTWFnd0tDbk52YjIxd2FTNWpiMjBvQUFQAQ?hl=en-ID&gl=ID&ceid=ID%3Aen',  # soompi
+            'https://news.google.com/publications/CAAqBwgKML-9lgswouOtAw?hl=en-ID&gl=ID&ceid=ID%3Aen'  # koreaboo
+        ]
+        
+        session = requests.Session()
+        session.headers.update({
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+        })
+
+        for url in publication_urls:
+            try:
+                response = session.get(url, timeout=10)
+                if response.ok:
+                    soup = BeautifulSoup(response.text, 'html.parser')
+                    articles = soup.find_all('article')
+                    
+                    # Determine publisher based on URL
+                    publisher = 'Unknown'
+                    if 'MKeRpQwwuYm0BA' in url:
+                        publisher = 'allkpop'
+                    elif 'CAAqJAgKIh5DQklTRUFnTWFnd0tDbk52YjIxd2FTNWpiMjBvQUFQAQ' in url:
+                        publisher = 'Soompi'
+                    elif 'ML-9lgswouOtAw' in url:
+                        publisher = 'Koreaboo'
+
+                    for article in articles:
+                        try:
+                            title_elem = article.find('h3') or article.find('h4')
+                            if not title_elem:
+                                continue
+
+                            title = title_elem.get_text().strip()
+                            link_elem = article.find('a')
+                            if not link_elem:
+                                continue
+
+                            url = link_elem.get('href', '')
+                            if url.startswith('./'):
+                                url = 'https://news.google.com' + url[1:]
+                            elif not url.startswith('http'):
+                                url = 'https://news.google.com' + url
+
+                            # Get timestamp if available
+                            time_elem = article.find('time')
+                            published_date = datetime.now().isoformat()
+                            if time_elem and time_elem.get('datetime'):
+                                published_date = time_elem['datetime']
+
+                            # Get image if available
+                            image = None
+                            img_elem = article.find('img')
+                            if img_elem:
+                                image = img_elem.get('src', '')
+                                if image and not image.startswith('http'):
+                                    image = 'https:' + image if image.startswith('//') else None
+
+                            all_news.append({
+                                'title': title,
+                                'url': url,
+                                'published_date': published_date,
+                                'publisher': publisher,
+                                'source': f'{publisher} via Google News',
+                                'image': image
+                            })
+                        except Exception as e:
+                            print(f"Error processing article from {publisher}: {str(e)}")
+                            continue
+
+                time.sleep(2)  # Add delay between requests
+            except Exception as e:
+                print(f"Error fetching from {url}: {str(e)}")
+                continue
+        
+        # 2. Additional Google News search queries for broader coverage
         google_news = GNews(
             language='en',
             country='US',
             period='1d',  # Last 24 hours
-            max_results=15,  # Reduced from 30 to improve speed
+            max_results=30,  # Increased from 15 to get more articles
             exclude_websites=['pinterest.com', 'twitter.com', 'facebook.com', 'instagram.com']
         )
         
@@ -480,7 +556,10 @@ def fetch_trending_kpop_news():
             '("K-pop" OR "Kpop") AND ("BLACKPINK" OR "블랙핑크") AND (news OR update OR comeback OR release OR concert OR performance OR award)',
             '("K-pop" OR "Kpop") AND ("NewJeans" OR "뉴진스" OR "SEVENTEEN" OR "세븐틴") AND (news OR update OR comeback OR release OR concert OR performance OR award)',
             '("K-pop" OR "Kpop") AND ("TWICE" OR "트와이스" OR "IVE" OR "아이브") AND (news OR update OR comeback OR release OR concert OR performance OR award)',
-            '("K-pop" OR "Kpop") AND ("Stray Kids" OR "스트레이 키즈" OR "LE SSERAFIM" OR "르세라핌") AND (news OR update OR comeback OR release OR concert OR performance OR award)'
+            '("K-pop" OR "Kpop") AND ("Stray Kids" OR "스트레이 키즈" OR "LE SSERAFIM" OR "르세라핌") AND (news OR update OR comeback OR release OR concert OR performance OR award)',
+            '("K-pop" OR "Kpop") AND ("ENHYPEN" OR "엔하이픈" OR "TXT" OR "투모로우바이투게더") AND (news OR update OR comeback OR release OR concert OR performance OR award)',
+            '("K-pop" OR "Kpop") AND ("aespa" OR "에스파" OR "NCT" OR "엔시티") AND (news OR update OR comeback OR release OR concert OR performance OR award)',
+            '("K-pop" OR "Kpop") AND ("Red Velvet" OR "레드벨벳" OR "NMIXX" OR "엔믹스") AND (news OR update OR comeback OR release OR concert OR performance OR award)'
         ]
 
         # Add delay between queries to prevent rate limiting
@@ -594,12 +673,21 @@ def fetch_trending_kpop_news():
         for article in filtered_news:
             article.pop('timestamp', None)
 
-        # Take top 20 most recent news
-        filtered_news = filtered_news[:20]
+        # Take top 50 most recent news
+        filtered_news = filtered_news[:50]
 
         if filtered_news:
             # Update cache only if we have new articles
-            trending_news_cache['data'] = filtered_news
+            if not trending_news_cache['data']:
+                trending_news_cache['data'] = filtered_news
+            else:
+                # Merge with existing articles, avoiding duplicates
+                existing_urls = {article['url'] for article in trending_news_cache['data']}
+                new_articles = [article for article in filtered_news if article['url'] not in existing_urls]
+                trending_news_cache['data'] = new_articles + trending_news_cache['data']
+                # Keep only the latest 100 articles
+                trending_news_cache['data'] = trending_news_cache['data'][:100]
+            
             trending_news_cache['last_updated'] = datetime.now()
         elif not trending_news_cache['data']:
             # Only if cache is empty, initialize with empty list
@@ -613,10 +701,10 @@ def fetch_trending_kpop_news():
             trending_news_cache['last_updated'] = datetime.now()
 
 def update_news_periodically():
-    """Update news every hour"""
+    """Update news every 5 minutes"""
     while True:
         fetch_trending_kpop_news()
-        time.sleep(3600)  # Sleep for 1 hour
+        time.sleep(300)  # Sleep for 5 minutes (300 seconds)
 
 # Start the background update thread
 update_thread = threading.Thread(target=update_news_periodically, daemon=True)
@@ -627,7 +715,7 @@ def trending_kpop():
     """Render the trending K-pop news page"""
     if not trending_news_cache['data'] or \
        (trending_news_cache['last_updated'] and \
-        datetime.now() - trending_news_cache['last_updated'] > timedelta(hours=1)):
+        datetime.now() - trending_news_cache['last_updated'] > timedelta(minutes=5)):
         fetch_trending_kpop_news()
     
     return render_template('trending_kpop.html', 
@@ -638,10 +726,8 @@ def trending_kpop():
 def get_trending_kpop():
     """API endpoint for getting trending news"""
     try:
-        if not trending_news_cache['data'] or \
-           (trending_news_cache['last_updated'] and \
-            datetime.now() - trending_news_cache['last_updated'] > timedelta(hours=1)):
-            fetch_trending_kpop_news()
+        # Always fetch new news when the API is called
+        fetch_trending_kpop_news()
         
         if not trending_news_cache['data']:
             return jsonify({

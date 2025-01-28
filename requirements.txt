@@ -3,4 +3,5 @@ requests==2.31.0
 python-dotenv==1.0.1
 beautifulsoup4==4.12.3
 newspaper3k==0.2.8
-gnews==0.3.6 
+gnews==0.3.6
+gunicorn==21.2.0 

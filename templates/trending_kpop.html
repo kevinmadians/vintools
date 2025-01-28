@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trending K-pop News - Shining Tools | Best Online Tools</title>
+    <title>Kpop News - Shining Tools</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
@@ -31,6 +31,8 @@
 
         body {
             font-family: 'Lexend Deca', 'Inter', sans-serif;
+            overflow: hidden;
+            height: 100vh;
         }
 
         h1, h2, h3, .font-heading {
@@ -115,6 +117,7 @@
         }
 
         .mobile-menu.active {
+            display: block;
             opacity: 1;
             transform: translateY(0);
         }
@@ -134,6 +137,17 @@
             background: rgba(99, 102, 241, 0.1);
         }
 
+        .nav-item.active {
+            background: var(--primary-gradient);
+            color: white;
+            font-weight: 500;
+        }
+
+        .nav-item.active:hover {
+            background: var(--primary-gradient);
+            opacity: 0.9;
+        }
+
         .nav-links a {
             font-family: 'Lexend Deca', sans-serif;
         }
@@ -141,6 +155,204 @@
         .purple-header {
             font-family: 'Lexend Deca', sans-serif;
             font-weight: 600;
+        }
+
+        /* Custom Scrollbar Styles */
+        .custom-scrollbar {
+            scrollbar-width: thin;
+            scrollbar-color: rgba(99, 102, 241, 0.5) rgba(229, 231, 235, 0.1);
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(229, 231, 235, 0.1);
+            border-radius: 4px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: rgba(99, 102, 241, 0.5);
+            border-radius: 4px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background-color: rgba(99, 102, 241, 0.7);
+        }
+
+        /* Dark mode scrollbar */
+        .dark .custom-scrollbar {
+            scrollbar-color: rgba(139, 92, 246, 0.5) rgba(17, 24, 39, 0.1);
+        }
+
+        .dark .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(17, 24, 39, 0.1);
+        }
+
+        .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: rgba(139, 92, 246, 0.5);
+        }
+
+        .dark .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background-color: rgba(139, 92, 246, 0.7);
+        }
+
+        /* Ensure the news container has proper spacing */
+        #newsContainer {
+            padding-right: 2px; /* Prevent content from touching scrollbar */
+        }
+
+        /* Adjust news card hover behavior */
+        .news-card {
+            transform: translateY(0);
+            transition: all 0.2s ease-in-out;
+        }
+        .news-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Make main content area fixed height */
+        .main-content {
+            height: calc(100vh - 24px);
+            overflow: hidden;
+        }
+
+        /* Adjust news container height */
+        .news-container-wrapper {
+            height: calc(100vh - 200px);
+            margin-top: 1rem;
+        }
+
+        .news-container-scroll {
+            height: 100%;
+            overflow-y: auto;
+            padding-right: 1rem;
+        }
+
+        /* Mobile-first adjustments */
+        @media (max-width: 768px) {
+            .main-content {
+                padding-top: 3.5rem;
+            }
+
+            .news-container-wrapper {
+                height: calc(100vh - 160px);
+                margin-top: 0.5rem;
+            }
+
+            .news-container-scroll {
+                padding: 0.75rem;
+            }
+
+            /* Hide Kpop News text in mobile */
+            .purple-header {
+                display: none;
+            }
+
+            /* Increase margin for black navbar */
+            nav.bg-gradient-to-r {
+                margin-top: 3.5rem;
+            }
+
+            /* Make the black navbar more compact */
+            nav.bg-gradient-to-r .flex.items-center.justify-between {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.5rem;
+            }
+
+            nav.bg-gradient-to-r .flex.items-center.space-x-4 {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.5rem;
+            }
+
+            nav.bg-gradient-to-r .flex.items-center.space-x-3 {
+                justify-content: space-between;
+                gap: 0.5rem;
+            }
+
+            /* Adjust text sizes and spacing */
+            nav.bg-gradient-to-r .text-sm {
+                font-size: 0.75rem;
+            }
+
+            nav.bg-gradient-to-r #sortOrder,
+            nav.bg-gradient-to-r button {
+                font-size: 0.75rem;
+                padding: 0.375rem 0.75rem;
+            }
+
+            nav.bg-gradient-to-r .bg-white.bg-opacity-10 {
+                padding: 0.375rem 0.75rem;
+            }
+
+            /* Make countdown more compact */
+            nav.bg-gradient-to-r .ml-2 {
+                margin-left: 0.25rem;
+            }
+
+            /* Adjust spacing between elements */
+            nav.bg-gradient-to-r .px-6 {
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+            }
+
+            nav.bg-gradient-to-r .py-3 {
+                padding-top: 0.375rem;
+                padding-bottom: 0.375rem;
+            }
+
+            /* Adjust article count and timestamp display */
+            .flex.items-center.space-x-4 {
+                gap: 0.5rem;
+            }
+
+            /* Make news cards more compact on mobile */
+            .news-card {
+                margin-bottom: 0.5rem;
+            }
+
+            .news-card .p-4 {
+                padding: 0.75rem;
+            }
+
+            /* Adjust image size on mobile */
+            .news-card .md\:w-32.md\:h-32 {
+                width: 80px;
+                height: 80px;
+            }
+
+            /* Make title and metadata more compact */
+            .news-card h2.text-lg {
+                font-size: 0.95rem;
+                line-height: 1.3;
+            }
+
+            .news-card .text-xs {
+                font-size: 0.7rem;
+            }
+
+            /* Adjust button sizes */
+            .copy-button {
+                padding: 0.3rem;
+            }
+
+            .copy-button i {
+                font-size: 0.75rem;
+            }
+
+            /* Adjust spacing between cards */
+            #newsContainer.space-y-4 {
+                gap: 0.5rem;
+            }
+
+            /* Make the timestamp text smaller */
+            .text-sm {
+                font-size: 0.75rem;
+            }
         }
     </style>
 </head>
@@ -168,7 +380,7 @@
                             Instagram Generator
                         </a>
                         <a href="/trending-kpop" class="text-indigo-600 dark:text-indigo-400 font-medium">
-                            Trending K-pop News
+                            Kpop News
                         </a>
                         <div class="relative" id="userDropdown">
                             <button onclick="toggleDropdown()" class="flex items-center space-x-1 text-gray-800 dark:text-gray-200 hover:text-indigo-600">
@@ -193,8 +405,8 @@
                         <a href="/instagram" class="nav-item">
                             Instagram Generator
                         </a>
-                        <a href="/trending-kpop" class="nav-item">
-                            Trending K-pop News
+                        <a href="/trending-kpop" class="nav-item active">
+                            Kpop News
                         </a>
                         <div class="nav-item">
                             <div class="flex justify-between items-center" onclick="toggleMobileSubmenu()">
@@ -216,33 +428,44 @@
     </nav>
 
     <!-- Main Content (adjusted for fixed navbar) -->
-    <div class="pt-24">
+    <div class="main-content pt-24">
         <!-- News Header -->
         <div class="container mx-auto px-6">
             <nav class="bg-gradient-to-r from-gray-800 to-gray-900 text-white shadow-lg mt-4 rounded-xl">
                 <div class="px-6 py-3">
                     <div class="flex items-center justify-between">
-                        <div class="text-xl font-bold purple-header">Trending K-pop News</div>
+                        <div class="text-xl font-bold purple-header">Kpop News</div>
                         <div class="flex items-center space-x-4 text-sm">
-                            <div>
-                                Last updated: <span id="lastUpdated" class="font-semibold">Loading...</span>
-                                <span class="ml-2">(Auto refresh in <span id="countdown" class="font-semibold">5:00</span>)</span>
+                            <div class="flex items-center space-x-4">
+                                <span class="bg-white bg-opacity-10 px-3 py-1 rounded-lg">
+                                    <span id="articleCount">0</span> articles
+                                </span>
+                                <div>
+                                    Last updated: <span id="lastUpdated" class="font-semibold">Loading...</span>
+                                    <span class="ml-2">(Auto refresh in <span id="countdown" class="font-semibold">5:00</span>)</span>
+                                </div>
                             </div>
-                            <button 
-                                onclick="updateNews(true)"
-                                class="bg-white bg-opacity-10 hover:bg-opacity-20 rounded-lg px-3 py-1.5 transition-all duration-200 flex items-center space-x-2">
-                                <i class="fas fa-sync-alt"></i>
-                                <span>Refresh</span>
-                            </button>
+                            <div class="flex items-center space-x-3">
+                                <select id="sortOrder" onchange="sortArticles(this.value)" class="bg-white bg-opacity-10 hover:bg-opacity-20 rounded-lg px-3 py-1.5 text-white border-none focus:ring-2 focus:ring-purple-500">
+                                    <option value="newest">Newest First</option>
+                                    <option value="oldest">Oldest First</option>
+                                </select>
+                                <button 
+                                    onclick="updateNews(true)"
+                                    class="bg-white bg-opacity-10 hover:bg-opacity-20 rounded-lg px-3 py-1.5 transition-all duration-200 flex items-center space-x-2">
+                                    <i class="fas fa-sync-alt"></i>
+                                    <span>Refresh</span>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </nav>
         </div>
 
-        <main class="container mx-auto px-6 py-6">
+        <main class="container mx-auto px-6">
             <!-- Loading State -->
-            <div id="loadingState" class="hidden">
+            <div id="loadingState">
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div class="news-card bg-white rounded-lg shadow-md overflow-hidden loading">
                         <div class="p-6">
@@ -251,14 +474,14 @@
                             <div class="h-4 bg-gray-200 rounded w-1/3"></div>
                         </div>
                     </div>
-                    <div class="news-card bg-white rounded-lg shadow-md overflow-hidden loading">
+                    <div class="news-card bg-white rounded-lg shadow-md overflow-hidden loading hidden md:block">
                         <div class="p-6">
                             <div class="h-6 bg-gray-200 rounded w-3/4 mb-4"></div>
                             <div class="h-4 bg-gray-200 rounded w-1/2 mb-2"></div>
                             <div class="h-4 bg-gray-200 rounded w-1/3"></div>
                         </div>
                     </div>
-                    <div class="news-card bg-white rounded-lg shadow-md overflow-hidden loading">
+                    <div class="news-card bg-white rounded-lg shadow-md overflow-hidden loading hidden lg:block">
                         <div class="p-6">
                             <div class="h-6 bg-gray-200 rounded w-3/4 mb-4"></div>
                             <div class="h-4 bg-gray-200 rounded w-1/2 mb-2"></div>
@@ -289,16 +512,19 @@
                 </button>
             </div>
 
-            <!-- News Container -->
-            <div class="space-y-6" id="newsContainer">
-                <!-- News items will be dynamically inserted here -->
-            </div>
-
-            <!-- Load More Button / Loading Indicator -->
-            <div id="loadMoreContainer" class="mt-8 text-center hidden">
-                <div class="flex items-center justify-center space-x-2 text-gray-600 dark:text-gray-400">
-                    <i class="fas fa-spinner fa-spin"></i>
-                    <span>Loading more articles...</span>
+            <!-- News Container with Fixed Height and Custom Scrollbar -->
+            <div class="news-container-wrapper bg-white dark:bg-gray-800 rounded-lg shadow-lg">
+                <div class="news-container-scroll custom-scrollbar p-6">
+                    <div class="space-y-4" id="newsContainer">
+                        <!-- News items will be dynamically inserted here -->
+                    </div>
+                    <!-- Load More Button / Loading Indicator -->
+                    <div id="loadMoreContainer" class="mt-8 text-center hidden">
+                        <div class="flex items-center justify-center space-x-2 text-gray-600 dark:text-gray-400">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <span>Loading more articles...</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </main>
@@ -310,9 +536,24 @@
         let allArticles = [];
         let isLoading = false;
         let hasMoreArticles = true;
+        const cacheExpiry = 5 * 60 * 1000; // 5 minutes in milliseconds
 
-        // Add scroll event listener for infinite scrolling
-        window.addEventListener('scroll', debounce(handleScroll, 100));
+        // Modify the scroll event listener to use the container's scroll position
+        function handleScroll() {
+            if (isLoading || !hasMoreArticles) return;
+
+            const container = document.querySelector('.news-container-scroll');
+            const scrollPosition = container.scrollTop + container.clientHeight;
+            const scrollHeight = container.scrollHeight;
+            const scrollThreshold = 100; // pixels from bottom
+
+            if (scrollPosition + scrollThreshold >= scrollHeight) {
+                loadMore();
+            }
+        }
+
+        // Update scroll event listener to watch the container instead of window
+        document.querySelector('.news-container-scroll').addEventListener('scroll', debounce(handleScroll, 100));
 
         // Debounce function to limit scroll event handling
         function debounce(func, wait) {
@@ -327,24 +568,22 @@
             };
         }
 
-        // Handle scroll event
-        function handleScroll() {
-            if (isLoading || !hasMoreArticles) return;
-
-            const scrollPosition = window.innerHeight + window.scrollY;
-            const documentHeight = document.documentElement.offsetHeight;
-            const scrollThreshold = 200; // pixels from bottom
-
-            if (scrollPosition + scrollThreshold >= documentHeight) {
-                loadMore();
-            }
-        }
-
         // Add mobile menu toggle function
         function toggleMobileMenu(event) {
             event.stopPropagation();
             const mobileMenu = document.querySelector('.mobile-menu');
-            mobileMenu.classList.toggle('active');
+            const isActive = mobileMenu.classList.contains('active');
+            
+            // First remove active class
+            mobileMenu.classList.remove('active');
+            
+            // Force a reflow
+            void mobileMenu.offsetWidth;
+            
+            // Then add it back if it wasn't active before
+            if (!isActive) {
+                mobileMenu.classList.add('active');
+            }
         }
 
         // Add dropdown toggle function
@@ -405,6 +644,25 @@
             return date.toLocaleString();
         }
 
+        function getRelativeTime(dateString) {
+            const now = new Date();
+            const date = new Date(dateString);
+            const diffInSeconds = Math.floor((now - date) / 1000);
+            
+            if (diffInSeconds < 60) {
+                return 'just now';
+            } else if (diffInSeconds < 3600) {
+                const minutes = Math.floor(diffInSeconds / 60);
+                return `${minutes} minute${minutes > 1 ? 's' : ''} ago`;
+            } else if (diffInSeconds < 86400) {
+                const hours = Math.floor(diffInSeconds / 3600);
+                return `${hours} hour${hours > 1 ? 's' : ''} ago`;
+            } else {
+                const days = Math.floor(diffInSeconds / 86400);
+                return `${days} day${days > 1 ? 's' : ''} ago`;
+            }
+        }
+
         function copyToClipboard(url, button) {
             navigator.clipboard.writeText(url).then(() => {
                 const icon = button.querySelector('i');
@@ -424,7 +682,7 @@
 
         function createNewsCard(article) {
             return `
-                <div class="news-card bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-300">
+                <div class="news-card bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-300" data-article-id="${article.url}">
                     <div class="p-4">
                         <div class="flex flex-col md:flex-row md:items-start gap-3">
                             ${article.image ? `
@@ -435,19 +693,30 @@
                             <div class="flex-grow min-w-0">
                                 <div class="flex justify-between items-start gap-3 mb-2">
                                     <h2 class="text-lg font-bold text-gray-800 dark:text-gray-200 line-clamp-2">${article.title}</h2>
-                                    <button 
-                                        onclick="copyToClipboard('${article.url}', this)"
-                                        class="copy-button flex-shrink-0 p-1.5 rounded-full bg-purple-100 hover:bg-purple-200 text-purple-600 transition-all duration-200"
-                                        title="Copy URL">
-                                        <i class="fas fa-copy text-sm"></i>
-                                    </button>
+                                    <div class="flex items-center gap-2">
+                                        <button 
+                                            onclick="deleteArticle('${article.url}')"
+                                            class="copy-button flex-shrink-0 p-1.5 rounded-full bg-red-100 hover:bg-red-200 text-red-600 transition-all duration-200"
+                                            title="Delete article">
+                                            <i class="fas fa-trash text-sm"></i>
+                                        </button>
+                                        <button 
+                                            onclick="copyToClipboard('${article.url}', this)"
+                                            class="copy-button flex-shrink-0 p-1.5 rounded-full bg-purple-100 hover:bg-purple-200 text-purple-600 transition-all duration-200"
+                                            title="Copy URL">
+                                            <i class="fas fa-copy text-sm"></i>
+                                        </button>
+                                    </div>
                                 </div>
                                 <div class="flex flex-wrap gap-2 text-xs mb-2">
                                     <span class="inline-flex items-center text-gray-600 dark:text-gray-400">
                                         <i class="fas fa-newspaper mr-1"></i>${article.publisher}
                                     </span>
                                     <span class="inline-flex items-center text-gray-600 dark:text-gray-400">
-                                        <i class="far fa-clock mr-1"></i>${formatDate(article.published_date)}
+                                        <i class="far fa-clock mr-1"></i>${getRelativeTime(article.published_date)}
+                                    </span>
+                                    <span class="inline-flex items-center text-gray-500 dark:text-gray-500 text-xs">
+                                        (${formatDate(article.published_date)})
                                     </span>
                                     ${article.source ? `
                                     <span class="inline-flex items-center text-gray-600 dark:text-gray-400">
@@ -472,7 +741,6 @@
         function showLoading() {
             document.getElementById('loadingState').classList.remove('hidden');
             document.getElementById('errorState').classList.add('hidden');
-            document.getElementById('newsContainer').innerHTML = '';
         }
 
         function showError(message) {
@@ -488,7 +756,27 @@
         }
 
         function startCountdown() {
-            let timeLeft = 300; // 5 minutes in seconds
+            const REFRESH_INTERVAL = 600; // 10 minutes in seconds
+            
+            // Get stored countdown state or initialize new one
+            let countdownState = localStorage.getItem('kpopNewsCountdown');
+            let timeLeft;
+            
+            if (countdownState) {
+                const state = JSON.parse(countdownState);
+                const now = new Date().getTime();
+                const timePassed = Math.floor((now - state.lastUpdate) / 1000);
+                timeLeft = Math.max(0, state.timeLeft - timePassed);
+                
+                // If timer would have expired while page was closed, force refresh
+                if (timeLeft === 0) {
+                    updateNews(false, true);
+                    timeLeft = REFRESH_INTERVAL;
+                }
+            } else {
+                timeLeft = REFRESH_INTERVAL;
+            }
+            
             const countdownElement = document.getElementById('countdown');
             
             function updateCountdown() {
@@ -496,8 +784,16 @@
                 const seconds = timeLeft % 60;
                 countdownElement.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
                 
+                // Store current state
+                localStorage.setItem('kpopNewsCountdown', JSON.stringify({
+                    timeLeft: timeLeft,
+                    lastUpdate: new Date().getTime()
+                }));
+                
                 if (timeLeft === 0) {
-                    timeLeft = 300;
+                    // Force a refresh when countdown reaches zero
+                    updateNews(false, true);
+                    timeLeft = REFRESH_INTERVAL;
                 } else {
                     timeLeft--;
                 }
@@ -521,6 +817,9 @@
             } else {
                 container.innerHTML = content;
             }
+
+            // Update article count
+            document.getElementById('articleCount').textContent = allArticles.length;
 
             // Update hasMoreArticles flag
             hasMoreArticles = allArticles.length > currentPage * articlesPerPage;
@@ -549,19 +848,106 @@
             }, 500);
         }
 
-        function updateNews(manual = false) {
+        function deleteArticle(articleUrl) {
+            if (confirm('Are you sure you want to delete this article?')) {
+                // Remove from DOM
+                const articleElement = document.querySelector(`[data-article-id="${articleUrl}"]`);
+                if (articleElement) {
+                    articleElement.remove();
+                }
+
+                // Remove from allArticles array
+                allArticles = allArticles.filter(article => article.url !== articleUrl);
+
+                // Update local storage
+                const data = {
+                    news: allArticles,
+                    last_updated: new Date().toISOString()
+                };
+                localStorage.setItem('kpopNews', JSON.stringify(data));
+                localStorage.setItem('kpopNewsTimestamp', new Date().getTime().toString());
+
+                // Update article count
+                document.getElementById('articleCount').textContent = allArticles.length;
+
+                // Refresh the current page view if needed
+                const startIndex = (currentPage - 1) * articlesPerPage;
+                const endIndex = startIndex + articlesPerPage;
+                const pageArticles = allArticles.slice(startIndex, endIndex);
+                
+                // If current page is empty and it's not the first page, go back one page
+                if (pageArticles.length === 0 && currentPage > 1) {
+                    currentPage--;
+                    loadMore();
+                }
+            }
+        }
+
+        // Load cached data on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            updateUsernameDisplay();
+            
+            const cachedData = localStorage.getItem('kpopNews');
+            if (cachedData) {
+                const data = JSON.parse(cachedData);
+                allArticles = data.news;
+                document.getElementById('articleCount').textContent = allArticles.length;
+                // Display the cached articles immediately
+                const firstPageArticles = allArticles.slice(0, articlesPerPage);
+                displayArticles(firstPageArticles);
+                if (data.last_updated) {
+                    document.getElementById('lastUpdated').textContent = formatDate(data.last_updated);
+                }
+            }
+        });
+
+        // Add sorting function
+        function sortArticles(order) {
+            // Sort the articles array
+            allArticles.sort((a, b) => {
+                const dateA = new Date(a.published_date);
+                const dateB = new Date(b.published_date);
+                return order === 'newest' ? dateB - dateA : dateA - dateB;
+            });
+
+            // Reset pagination
+            currentPage = 1;
+            
+            // Display first page of sorted articles
+            const firstPageArticles = allArticles.slice(0, articlesPerPage);
+            displayArticles(firstPageArticles);
+
+            // Save sorted order to localStorage
+            const data = {
+                news: allArticles,
+                last_updated: new Date().toISOString()
+            };
+            localStorage.setItem('kpopNews', JSON.stringify(data));
+        }
+
+        // Modify the updateNews function to maintain sort order
+        function updateNews(manual = false, forceRefresh = false) {
+            const sortSelect = document.getElementById('sortOrder');
+            const currentSortOrder = sortSelect ? sortSelect.value : 'newest';
+
             if (manual) {
-                // Reset countdown if manually refreshed
                 clearInterval(window.countdownInterval);
                 window.countdownInterval = startCountdown();
-                // Reset pagination and flags
+                // Reset countdown state on manual refresh
+                localStorage.setItem('kpopNewsCountdown', JSON.stringify({
+                    timeLeft: 600, // 10 minutes
+                    lastUpdate: new Date().getTime()
+                }));
                 currentPage = 1;
                 isLoading = false;
                 hasMoreArticles = true;
+                document.getElementById('newsContainer').innerHTML = '';
+                showLoading();
             }
-            
-            showLoading();
-            fetch('/api/trending-kpop')
+
+            // Add timestamp to prevent caching
+            const timestamp = new Date().getTime();
+            fetch(`/api/trending-kpop?t=${timestamp}`)
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Failed to fetch news');
@@ -574,35 +960,116 @@
                     }
                     hideLoading();
                     
-                    // Store all articles
-                    allArticles = data.news;
+                    const now = new Date();
+                    const threeHoursAgo = new Date(now - (3 * 60 * 60 * 1000)); // 3 hours ago
                     
+                    // Filter and process new articles
+                    const newArticles = data.news.filter(article => {
+                        const articleDate = new Date(article.published_date);
+                        return articleDate >= threeHoursAgo;
+                    });
+
+                    // Load existing articles from cache
+                    const cachedData = localStorage.getItem('kpopNews');
+                    let existingArticles = [];
+                    if (cachedData) {
+                        const data = JSON.parse(cachedData);
+                        existingArticles = data.news || [];
+                    }
+
+                    // Merge articles, prioritizing newer ones
+                    const mergedArticles = [...existingArticles];
+                    const addedArticles = [];
+                    
+                    newArticles.forEach(newArticle => {
+                        const exists = mergedArticles.some(existing => 
+                            existing.url === newArticle.url || 
+                            existing.title === newArticle.title
+                        );
+                        if (!exists) {
+                            mergedArticles.unshift(newArticle);
+                            addedArticles.push(newArticle);
+                        }
+                    });
+
+                    // Sort all articles by date, newest first
+                    mergedArticles.sort((a, b) => {
+                        const dateA = new Date(a.published_date);
+                        const dateB = new Date(b.published_date);
+                        return dateB - dateA;
+                    });
+
+                    // Keep only articles from the last 24 hours
+                    const oneDayAgo = new Date(now - (24 * 60 * 60 * 1000));
+                    allArticles = mergedArticles.filter(article => {
+                        const articleDate = new Date(article.published_date);
+                        return articleDate >= oneDayAgo;
+                    });
+
+                    // Save to local storage
+                    const storageData = {
+                        news: allArticles,
+                        last_updated: new Date().toISOString()
+                    };
+                    localStorage.setItem('kpopNews', JSON.stringify(storageData));
+
                     // Display first page
                     const firstPageArticles = allArticles.slice(0, articlesPerPage);
                     displayArticles(firstPageArticles);
                     
                     const lastUpdated = document.getElementById('lastUpdated');
-                    lastUpdated.textContent = formatDate(data.last_updated);
+                    lastUpdated.textContent = formatDate(new Date().toISOString());
+
+                    // Show notification for new articles
+                    if (addedArticles.length > 0) {
+                        const notification = document.createElement('div');
+                        notification.className = 'fixed bottom-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg z-50 animate-fade-in-up';
+                        notification.textContent = `${addedArticles.length} new articles added!`;
+                        document.body.appendChild(notification);
+                        setTimeout(() => notification.remove(), 3000);
+
+                        if (!manual && forceRefresh) {
+                            document.querySelector('.news-container-scroll').scrollTo({ top: 0, behavior: 'smooth' });
+                        }
+                    }
+
+                    // Apply current sort order
+                    sortArticles(currentSortOrder);
                 })
                 .catch(error => {
                     console.error('Error:', error);
-                    showError(error.message);
-                    showLoadMoreButton(false);
-                    hasMoreArticles = false;
+                    if (manual || forceRefresh) {
+                        const notification = document.createElement('div');
+                        notification.className = 'fixed bottom-4 right-4 bg-red-500 text-white px-4 py-2 rounded-lg shadow-lg z-50 animate-fade-in-up';
+                        notification.textContent = 'Failed to fetch new articles';
+                        document.body.appendChild(notification);
+                        setTimeout(() => notification.remove(), 3000);
+                    }
                 });
         }
+
+        // Add styles for notification animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fade-in-up {
+                from {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            .animate-fade-in-up {
+                animation: fade-in-up 0.3s ease-out;
+            }
+        `;
+        document.head.appendChild(style);
 
         // Initial load
         updateNews();
         window.countdownInterval = startCountdown();
-
-        // Update every 5 minutes
-        setInterval(() => {
-            updateNews();
-            // Reset countdown
-            clearInterval(window.countdownInterval);
-            window.countdownInterval = startCountdown();
-        }, 5 * 60 * 1000);
     </script>
 </body>
 </html> 
