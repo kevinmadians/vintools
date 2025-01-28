@@ -4,4 +4,6 @@ python-dotenv
 beautifulsoup4
 newspaper3k
 gnews
-gunicorn 
+gunicorn
+lxml[html_clean]
+lxml_html_clean 
