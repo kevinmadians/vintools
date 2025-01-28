@@ -1,13 +1,16 @@
-from flask import Flask, render_template, request, jsonify, session
+from flask import Flask, render_template, request, jsonify, session, send_from_directory
 import os
 from dotenv import load_dotenv
 import requests
 from newspaper import Article
 import json
 import re
-from datetime import datetime
+from datetime import datetime, timedelta
 from functools import wraps
 import time
+from gnews import GNews
+import threading
+from bs4 import BeautifulSoup
 
 class HistoryManager:
     def __init__(self, session, key, max_items=10):
@@ -450,6 +453,210 @@ def generate_instagram():
         return error_response(str(e), e.status_code)
     except Exception as e:
         return error_response(str(e))
+
+# Cache for trending news
+trending_news_cache = {
+    'data': [],
+    'last_updated': None
+}
+
+def fetch_trending_kpop_news():
+    """Fetch trending K-pop news from multiple sources"""
+    try:
+        all_news = []
+        
+        # 1. Google News - Split into multiple smaller queries
+        google_news = GNews(
+            language='en',
+            country='US',
+            period='1d',  # Last 24 hours
+            max_results=15,  # Reduced from 30 to improve speed
+            exclude_websites=['pinterest.com', 'twitter.com', 'facebook.com', 'instagram.com']
+        )
+        
+        # Split search into multiple smaller queries with more specific K-pop terms
+        search_queries = [
+            '("K-pop" OR "Kpop") AND ("BTS" OR "방탄소년단" OR "Bangtan") AND (news OR update OR comeback OR release OR concert OR performance OR award)',
+            '("K-pop" OR "Kpop") AND ("BLACKPINK" OR "블랙핑크") AND (news OR update OR comeback OR release OR concert OR performance OR award)',
+            '("K-pop" OR "Kpop") AND ("NewJeans" OR "뉴진스" OR "SEVENTEEN" OR "세븐틴") AND (news OR update OR comeback OR release OR concert OR performance OR award)',
+            '("K-pop" OR "Kpop") AND ("TWICE" OR "트와이스" OR "IVE" OR "아이브") AND (news OR update OR comeback OR release OR concert OR performance OR award)',
+            '("K-pop" OR "Kpop") AND ("Stray Kids" OR "스트레이 키즈" OR "LE SSERAFIM" OR "르세라핌") AND (news OR update OR comeback OR release OR concert OR performance OR award)'
+        ]
+
+        # Add delay between queries to prevent rate limiting
+        for query in search_queries:
+            try:
+                results = google_news.get_news(query)
+                if results:
+                    # Filter out non-K-pop news
+                    filtered_results = []
+                    kpop_keywords = ['k-pop', 'kpop', 'bts', 'blackpink', 'twice', 'newjeans', 
+                                   'seventeen', 'stray kids', 'ive', 'le sserafim', '방탄소년단', 
+                                   '블랙핑크', '트와이스', '뉴진스', '세븐틴', '스트레이 키즈', 
+                                   '아이브', '르세라핌']
+                    
+                    for article in results:
+                        title_lower = article['title'].lower()
+                        # Check if title contains any K-pop keywords
+                        if any(keyword in title_lower for keyword in kpop_keywords):
+                            filtered_results.append(article)
+                    
+                    all_news.extend(filtered_results)
+                time.sleep(1)  # Add 1 second delay between queries
+            except Exception as e:
+                print(f"Error in Google News query: {str(e)}")
+                continue
+
+        # 2. Soompi News with timeout (already K-pop focused)
+        try:
+            session = requests.Session()
+            session.headers.update({'User-Agent': 'Mozilla/5.0'})
+            
+            # Get news from Soompi's K-pop news section specifically
+            soompi_response = session.get(
+                'https://www.soompi.com/category/k-pop', 
+                timeout=10
+            )
+            if soompi_response.ok:
+                soup = BeautifulSoup(soompi_response.text, 'html.parser')
+                soompi_articles = soup.find_all('article', class_='post-item')
+                for article in soompi_articles[:5]:
+                    title_elem = article.find('h2', class_='title')
+                    if not title_elem:
+                        continue
+                    title = title_elem.text.strip()
+                    url = article.find('a')['href']
+                    if not url.startswith('http'):
+                        url = 'https://www.soompi.com' + url
+                    date = article.find('time')['datetime'] if article.find('time') else datetime.now().isoformat()
+                    image = article.find('img')['src'] if article.find('img') else None
+                    all_news.append({
+                        'title': title,
+                        'url': url,
+                        'published_date': date,
+                        'publisher': 'Soompi',
+                        'source': 'Soompi K-pop News',
+                        'image': image
+                    })
+        except requests.exceptions.Timeout:
+            print("Timeout error fetching from Soompi")
+        except requests.exceptions.RequestException as e:
+            print(f"Error fetching from Soompi: {str(e)}")
+        except Exception as e:
+            print(f"Unexpected error fetching from Soompi: {str(e)}")
+
+        # Process and sort news
+        now = datetime.now()
+        filtered_news = []
+        
+        for article in all_news:
+            try:
+                # Handle different date formats
+                if isinstance(article, dict):
+                    pub_date = None
+                    published_date_str = None
+                    
+                    # Handle Google News format
+                    if 'published date' in article:
+                        try:
+                            pub_date = datetime.strptime(article['published date'], '%a, %d %b %Y %H:%M:%S GMT')
+                            published_date_str = article['published date']
+                        except ValueError:
+                            pass
+                    
+                    # Handle Soompi format
+                    if not pub_date and 'published_date' in article:
+                        try:
+                            pub_date = datetime.fromisoformat(article['published_date'].replace('Z', '+00:00'))
+                            published_date_str = article['published_date']
+                        except ValueError:
+                            pass
+                    
+                    # Only include recent articles (last 24 hours)
+                    if pub_date and now - pub_date <= timedelta(days=1):
+                        filtered_news.append({
+                            'title': article['title'],
+                            'url': article['url'],
+                            'published_date': published_date_str,
+                            'timestamp': pub_date.timestamp(),  # Add timestamp for easier sorting
+                            'publisher': article.get('publisher', {}).get('title', article.get('source', 'Unknown Source')),
+                            'source': article.get('source', 'Google News'),
+                            'image': article.get('image', None)
+                        })
+            except Exception as e:
+                print(f"Error processing article: {str(e)}")
+                continue
+
+        # Sort by timestamp (newest first)
+        filtered_news.sort(key=lambda x: x['timestamp'], reverse=True)
+        
+        # Remove timestamp from final output
+        for article in filtered_news:
+            article.pop('timestamp', None)
+
+        # Take top 20 most recent news
+        filtered_news = filtered_news[:20]
+
+        if filtered_news:
+            # Update cache only if we have new articles
+            trending_news_cache['data'] = filtered_news
+            trending_news_cache['last_updated'] = datetime.now()
+        elif not trending_news_cache['data']:
+            # Only if cache is empty, initialize with empty list
+            trending_news_cache['data'] = []
+            trending_news_cache['last_updated'] = datetime.now()
+
+    except Exception as e:
+        print(f"Error fetching news: {str(e)}")
+        if not trending_news_cache['data']:
+            trending_news_cache['data'] = []
+            trending_news_cache['last_updated'] = datetime.now()
+
+def update_news_periodically():
+    """Update news every hour"""
+    while True:
+        fetch_trending_kpop_news()
+        time.sleep(3600)  # Sleep for 1 hour
+
+# Start the background update thread
+update_thread = threading.Thread(target=update_news_periodically, daemon=True)
+update_thread.start()
+
+@app.route('/trending-kpop')
+def trending_kpop():
+    """Render the trending K-pop news page"""
+    if not trending_news_cache['data'] or \
+       (trending_news_cache['last_updated'] and \
+        datetime.now() - trending_news_cache['last_updated'] > timedelta(hours=1)):
+        fetch_trending_kpop_news()
+    
+    return render_template('trending_kpop.html', 
+                         news=trending_news_cache['data'],
+                         last_updated=trending_news_cache['last_updated'])
+
+@app.route('/api/trending-kpop')
+def get_trending_kpop():
+    """API endpoint for getting trending news"""
+    try:
+        if not trending_news_cache['data'] or \
+           (trending_news_cache['last_updated'] and \
+            datetime.now() - trending_news_cache['last_updated'] > timedelta(hours=1)):
+            fetch_trending_kpop_news()
+        
+        if not trending_news_cache['data']:
+            return jsonify({
+                'error': 'No news available at the moment. Please try again later.'
+            }), 404
+        
+        return jsonify({
+            'news': trending_news_cache['data'],
+            'last_updated': trending_news_cache['last_updated'].isoformat() if trending_news_cache['last_updated'] else None
+        })
+    except Exception as e:
+        print(f"Error in /api/trending-kpop: {str(e)}")
+        return jsonify({
+            'error': 'An error occurred while fetching the news. Please try again later.'
+        }), 500
 
 if __name__ == '__main__':
     app.run(debug=True) 
